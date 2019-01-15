@@ -1,0 +1,434 @@
+\documentclass[8pt,landscape]{article}
+\usepackage[english]{babel}\usepackage[babel=true]{microtype}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+%\usepackage{pslatex}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{calc}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{color}
+\usepackage{xcolor} \definecolor{hintergrund}{HTML}{B0C4E3} \definecolor{cobalt}{rgb}{0.0, 0.28, 0.67}
+\usepackage{sectsty} \sectionfont{\color{cobalt}} \subsectionfont{\color{cobalt}}
+\usepackage{hyperref}
+\usepackage[]{url}
+\hypersetup{%
+  colorlinks=true,  
+  linkcolor = black,
+  citecolor = black, 
+  urlcolor = cobalt, 
+  pdfpagemode=UseNone, 
+  pdfstartview=FitH,
+  pdfauthor= {s6maduch und s6dekubi},
+  pdftitle= LaTeX Reference Card
+}
+\urlstyle{same}
+% Turn off header and footer
+\pagestyle{empty}
+%\setlength{\leftmargin}{0.75in}
+\setlength{\oddsidemargin}{-0.75in}
+\setlength{\evensidemargin}{-0.75in}
+\setlength{\textwidth}{10.5in}
+\setlength{\topmargin}{-0.2in}
+\setlength{\textheight}{7.4in}
+\setlength{\headheight}{0in}
+\setlength{\headsep}{0in}
+\pdfpageheight\paperheight
+\pdfpagewidth\paperwidth
+% Redefine section commands to use less space
+\makeatletter
+\renewcommand\section{\@startsection{section}{1}{0mm}%
+                                     {-24pt}% \@plus -12pt \@minus -6pt}%
+                                     {0.5ex}%
+                                {\color{cobalt}\normalfont\large\bfseries}}
+\makeatother
+% Don't print section numbers
+\setcounter{secnumdepth}{0}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\newcommand{\code}{\texttt}
+\newcommand{\bcode}[1]{\texttt{\textbf{#1}}}
+\newcommand\F{\code{FALSE}}
+\newcommand\T{\code{TRUE}}
+%\newcommand{\hangpara}[2]{\hangindent#1\hangafter#2\noindent}
+%\newenvironment{hangparas}[2]{\setlength{\parindent}{\z@}\everypar={\hangpara{#1}{#2}}}
+\newcommand{\describe}[1]{\begin{description}{#1}\end{description}}
+% -----------------------------------------------------------------------
+\input{settingsListing}
+
+\begin{document}
+\footnotesize
+\begin{multicols*}{3}
+
+% multicol parameters
+% These lengths are set only within the two main columns
+%\setlength{\columnseprule}{0.25pt}
+\setlength{\premulticols}{1pt}
+\setlength{\postmulticols}{1pt}
+\setlength{\multicolsep}{1pt}
+\setlength{\columnsep}{10pt}
+
+\begin{center}
+     {\Large{\textbf{\color{cobalt}\LaTeX~Reference Card}}} \\
+ \today
+\end{center}
+
+\section{German preamble}
+\begin{tabular}{@{}ll@{}}
+%\verb!book!    & Default is two-sided. \\
+\verb!\documentclass[a4paper]{article}!\\
+\verb!\usepackage[ngerman]{babel}!\\
+\verb!\usepackage{lmodern}!\\
+\verb!\usepackage[utf8]{inputenc}!\\
+\verb!\usepackage[T1]{fontenc}!\\
+\verb!\usepackage[top=2cm,left=3cm,right=2cm,bottom=2cm]{geometry}!\\
+\verb!\begin{document}!\\
+\verb! Mein erstes \LaTeX~ Dokument!\\
+\verb!\end{document}!
+\end{tabular}
+
+\subsection{Common used \texttt{documentclass} options}
+\newlength{\MyLen}
+\settowidth{\MyLen}{\texttt{letterpaper}/\texttt{a4paper} \ }
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}}
+\verb!\documentclass[<options>]{<class>}! \\
+\texttt{<options>:}\\
+\texttt{10pt} or \texttt{11pt} or \texttt{12pt} & Font size. \\
+\texttt{a4paper} & Paper size. \\
+\texttt{<class>:}\\
+article & Scientific Paper\\
+beamer & Presentation
+\end{tabular}
+
+
+\subsection{Packages}
+\settowidth{\MyLen}{\texttt{multicol} }
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}}
+%\begin{tabular}{@{}ll@{}}
+\texttt{graphicx}  &  ~~~
+                        \verb!\includegraphics[width=!%
+                        \textit{x}\verb!]{!%
+                        \textit{<path>}\verb!}!. \\
+\texttt{url}       &  ~~~~\verb!\url{!%
+                        \textit{http://\ldots}%
+                        \verb!}!.
+\end{tabular}
+
+
+\subsection{Title}
+\settowidth{\MyLen}{\texttt{.author.text.} }
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}}
+\verb!\author{!\textit{text}\verb!}! & Author of document. \\
+\verb!\title{!\textit{text}\verb!}!  & Title of document. \\
+\verb!\date{!\textit{text}\verb!}!   & Date. \\
+\end{tabular}
+
+These commands go before \verb!\begin{document}!.  The declaration
+\verb!\maketitle! goes at the top of the document.
+
+\subsection{Miscellaneous}
+\settowidth{\MyLen}{\texttt{.pagestyle.empty.} }
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}}
+\verb!\tableofcontents!      &   Add a table of contents here. \\
+\verb!\listoffigures!      &   Add a list of figures here. \\
+
+\end{tabular}
+
+
+
+\section{Document structure}
+\begin{multicols}{2}
+\verb!\section{!\textit{title}\verb!}!  \\
+\verb!\subsection{!\textit{title}\verb!}!  \\
+\verb!\subsubsection{!\textit{title}\verb!}!  \\
+\verb!\paragraph{!\textit{title}\verb!}!  \\
+\verb!\subparagraph{!\textit{title}\verb!}!
+\end{multicols}
+
+
+\subsection{Lists}
+\settowidth{\MyLen}{\texttt{.begin.description.}}
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}}
+\verb!\begin{enumerate}!        &  Numbered list. \\
+\verb!\begin{itemize}!          &  Bulleted list. \\
+\verb!\begin{description}!      &  Description list. \\
+\verb!\item! \textit{text}      &  Add an item. \\
+\verb!\item[!\textit{x}\verb!]! \textit{text}
+                                &  Use \textit{x} instead of normal
+                        bullet or number.  Required for descriptions. \\
+\end{tabular}
+
+
+
+
+\subsection{References}
+\settowidth{\MyLen}{\texttt{.pageref.marker..}}
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}}
+\verb!\label{!\textit{marker}\verb!}!   &  Set a marker for cross-reference, 
+                          often of the form \verb!\label{sec:item}!. \\
+\verb!\eqref{!\textit{marker}\verb!}!   &  Give number of mathematical equation in parenthesis. \\
+\verb!\ref{!\textit{marker}\verb!}!   &  Give section/body number of marker. \\
+\verb!\pageref{!\textit{marker}\verb!}! &  Give page number of marker. \\
+\verb!\footnote{!\textit{text}\verb!}!  &  Print footnote at bottom of page. \\
+\end{tabular}
+
+
+\subsection{Floating bodies}
+\settowidth{\MyLen}{\texttt{.begin.equation..place.}}
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}}
+\verb!\begin{table}[!\textit{place}\verb!]!     &  Add numbered table. \\
+\verb!\begin{figure}[!\textit{place}\verb!]!    &  Add numbered figure. \\
+\verb!\begin{equation}[!\textit{place}\verb!]!  &  Add numbered equation. \\
+\verb!\caption{!\textit{text}\verb!}!           &  Caption for the body. \\
+\end{tabular}
+
+The \textit{place} is a list valid placements for the body.  \texttt{t}=top,
+\texttt{h}=here, \texttt{b}=bottom, \texttt{p}=separate page,  Captions and label markers should be within the environment.
+
+%---------------------------------------------------------------------------
+
+\section{Text properties}
+
+\subsection{Font face}
+\newcommand{\FontCmd}[3]{\PBS\verb!\#1{!\textit{text}\verb!}!  \> %
+                         \verb!{\#2 !\textit{text}\verb!}! \> %
+                         \#1{#3}}
+\begin{tabular}{@{}l@{}l@{}l@{}}
+\textit{Command} & \textit{Declaration} & \textit{Effect} \\
+\verb!\textrm{!\textit{text}\verb!}!                    & %
+        \verb!{\rmfamily !\textit{text}\verb!}!               & %
+        \textrm{Roman family} \\
+\verb!\texttt{!\textit{text}\verb!}!                    & %
+        \verb!{\ttfamily !\textit{text}\verb!}!               & %
+        \texttt{Typewriter family} \\
+\verb!\textbf{!\textit{text}\verb!}!                    & %
+        \verb!{\bfseries !\textit{text}\verb!}!               & %
+        \textbf{Bold series} \\
+\verb!\textit{!\textit{text}\verb!}!                    & %
+        \verb!{\itshape !\textit{text}\verb!}!               & %
+        \textit{Italic shape} \\
+\end{tabular}
+
+
+\subsection{Font size}
+\setlength{\columnsep}{14pt} % Need to move columns apart a little
+\begin{multicols}{2}
+\begin{tabbing}
+\verb!\footnotesize{}!          \= \kill
+\verb!\tiny{}!                  \>  \tiny{tiny} \\
+\verb!\scriptsize{}!            \>  \scriptsize{scriptsize} \\
+\verb!\footnotesize{}!          \>  \footnotesize{footnotesize} \\
+\verb!\small{}!                 \>  \small{small} \\
+\verb!\normalsize{}!            \>  \normalsize{normalsize} \\
+\verb!\large{}!                 \>  \large{large} \\
+\verb!\Large{}!                 \=  \Large{Large} \\  % Tab hack for new column
+\verb!\LARGE{}!                 \>  \LARGE{LARGE} \\
+\verb!\huge{}!                  \>  \huge{huge} \\
+\verb!\Huge{}!                  \>  \Huge{Huge}
+\end{tabbing}
+\end{multicols}
+\setlength{\columnsep}{1pt} % Set column separation back
+
+
+\subsection{Justification}
+\begin{tabular}{@{}ll@{}}
+\textit{Environment}  &  \textit{Declaration}  \\
+\verb!\begin{center}!      & \verb!\centering!  \\
+\verb!\begin{flushleft}!  & \verb!\raggedright! \\
+\verb!\begin{flushright}! & \verb!\raggedleft!  \\
+\end{tabular}
+
+\section{Text-mode symbols}
+
+\subsection{Symbols}
+\begin{tabular}{@{}l@{\hspace{1em}}l@{\hspace{2em}}l@{\hspace{1em}}l@{\hspace{2em}}l@{\hspace{1em}}l@{\hspace{2em}}l@{\hspace{1em}}l@{}}
+\&              &  \verb!\&! &
+\_              &  \verb!\_! &
+\ldots          &  \verb!\ldots! &
+\textbullet     &  \verb!\textbullet! \\
+\$              &  \verb!\$! &
+\^{}            &  \verb!\^{}! &
+\textbar        &  \verb!\textbar! &
+\textbackslash  &  \verb!\textbackslash! \\
+\%              &  \verb!\%! &
+\~{}            &  \verb!\~{}! &
+\#              &  \verb!\#! &
+\S              &  \verb!\S! \\
+\end{tabular}
+
+
+
+
+\subsection{Delimiters}
+\begin{tabular}{cc}
+Code	& Ausgabe \\
+\verb!\glqq! & „ \\
+\verb!\grqq! & “	\\
+\end{tabular}
+
+
+\subsection{Line and page breaks}
+\settowidth{\MyLen}{\texttt{.pagebreak} }
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}}
+\verb!\\!          &  Begin new line without new paragraph.  \\
+\verb!\\[1cm]!         &  Linebreak and 1cm offset. \\
+\verb!\newpage!  &  Start new page. \\
+\verb!\noindent!   &  Do not indent current line.
+\end{tabular}
+
+
+\subsection{Miscellaneous}
+\settowidth{\MyLen}{\texttt{.rule.w..h.} }
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}}
+\verb!\today!  &  \today. \\
+\verb!$\sim$!  &  Prints $\sim$ instead of \verb!\~{}!, which makes \~{}. \\
+\verb!~!       &  Space, disallow linebreak (\verb!W.J.~Clinton!). \\
+\end{tabular}
+
+
+
+\section{Tabular environments}
+
+Remember to place a Tabular environment inside an table environment. Then it is easily possible to add a caption and the table will be added to the list of tables:
+
+\verb!\begin{table}{!\textit{<pos>}\verb!}! \\
+\verb!\begin{tabular}{|c|c|}!\\
+\verb!\hline!\\
+\verb!	11 & 12\\!\\
+\verb!\hline!\\
+\verb!	21 & 22\\!\\
+\verb!\hline!\\
+\verb!\end{tabular}!\\
+\verb!\end{table}! \\
+
+
+\subsubsection{\texttt{tabular} <cols> specification}
+\settowidth{\MyLen}{\texttt{p}\{\textit{width}\} \ }
+\begin{tabular}{@{}p{\the\MyLen}@{}p{\linewidth-\the\MyLen}@{}}
+\texttt{l}    &   Left-justified column.  \\
+\texttt{c}    &   Centered column.  \\
+\texttt{r}    &   Right-justified column. \\
+\verb!|!      &   Inserts a vertical line between columns. 
+\end{tabular}
+
+
+\subsubsection{\texttt{tabular} elements}
+\settowidth{\MyLen}{\texttt{.cline.x-y..}}
+\begin{tabular}{@{}p{\the\MyLen}@{}p{\linewidth-\the\MyLen}@{}}
+\verb!\hline!           &  Horizontal line between rows.  \\
+\end{tabular}
+
+
+\section{Math mode}
+Include in preamble:\\~\\
+\verb!\usepackage{amsmath,amssymb,amsfonts,amsthm,mathtools}!\\~\\
+For inline math, use \verb!\(...\)! or \verb!$...$!.
+For displayed math, use \verb!\[...\]! or \verb!\begin{equation}!.
+
+\begin{tabular}{@{}l@{\hspace{1em}}l@{\hspace{2em}}l@{\hspace{1em}}l@{}}
+Superscript$^{x}$       &
+\verb!^{x}!             &  
+Subscript$_{x}$         &
+\verb!_{x}!             \\  current
+$\frac{x}{y}$           &
+\verb!\frac{x}{y}!      &  
+$\sum_{k=1}^n$          &
+\verb!\sum_{k=1}^n!     \\  
+$\sqrt[n]{x}$           &
+\verb!\sqrt[n]{x}!      &  
+$\prod_{k=1}^n$         &
+\verb!\prod_{k=1}^n!    \\ 
+\end{tabular}
+
+\subsection{Math-mode symbols}
+
+% The ordering of these symbols is slightly odd.  This is because I had to put all the
+% long pieces of text in the same column (the right) for it all to fit properly.
+% Otherwise, it wouldn't be possible to fit four columns of symbols here.
+
+\begin{tabular}{@{}l@{\hspace{1ex}}l@{\hspace{1em}}l@{\hspace{1ex}}l@{\hspace{1em}}l@{\hspace{1ex}} l@{\hspace{1em}}l@{\hspace{1ex}}l@{}}
+$\leq$          &  \verb!\leq!  &
+$\geq$          &  \verb!\geq!  &
+$\neq$          &  \verb!\neq!  &
+$\approx$       &  \verb!\approx!  \\
+$\times$        &  \verb!\times!  &
+$\div$          &  \verb!\div!  &
+$\pm$           & \verb!\pm!  &
+$\cdot$         &  \verb!\cdot!  \\
+$^{\circ}$      & \verb!^{\circ}! &
+$\circ$         &  \verb!\circ!  &
+$\prime$        & \verb!\prime!  &
+$\cdots$        &  \verb!\cdots!  \\
+$\infty$        & \verb!\infty!  &
+$\neg$          & \verb!\neg!  &
+$\wedge$        & \verb!\wedge!  &
+$\vee$          & \verb!\vee!  \\
+$\supset$       & \verb!\supset!  &
+$\forall$       & \verb!\forall!  &
+$\in$           & \verb!\in!  &
+$\rightarrow$   &  \verb!\rightarrow! \\
+$\subset$       & \verb!\subset!  &
+$\exists$       & \verb!\exists!  &
+$\notin$        & \verb!\notin!  &
+$\Rightarrow$   &  \verb!\Rightarrow! \\
+$\cup$          & \verb!\cup!  &
+$\cap$          & \verb!\cap!  &
+$\mid$          & \verb!\mid!  &
+$\Leftrightarrow$   &  \verb!\Leftrightarrow! \\
+$\dot a$        & \verb!\dot a!  &
+$\hat a$        & \verb!\hat a!  &
+$\bar a$        & \verb!\bar a!  &
+$\tilde a$      & \verb!\tilde a!  \\
+
+$\alpha$        &  \verb!\alpha!  &
+$\beta$         &  \verb!\beta!  &
+$\gamma$        &  \verb!\gamma!  &
+$\delta$        &  \verb!\delta!  \\
+$\epsilon$      &  \verb!\epsilon!  &
+$\zeta$         &  \verb!\zeta!  &
+$\eta$          &  \verb!\eta!  &
+$\varepsilon$   &  \verb!\varepsilon!  \\
+$\theta$        &  \verb!\theta!  &
+$\iota$         &  \verb!\iota!  &
+$\kappa$        &  \verb!\kappa!  &
+$\vartheta$     &  \verb!\vartheta!  \\
+$\lambda$       &  \verb!\lambda!  &
+$\mu$           &  \verb!\mu!  &
+$\nu$           &  \verb!\nu!  &
+$\xi$           &  \verb!\xi!  \\
+$\pi$           &  \verb!\pi!  &
+$\rho$          &  \verb!\rho!  &
+$\sigma$        &  \verb!\sigma!  &
+$\tau$          &  \verb!\tau!  \\
+$\upsilon$      &  \verb!\upsilon!  &
+$\phi$          &  \verb!\phi!  &
+$\chi$          &  \verb!\chi!  &
+$\psi$          &  \verb!\psi!  \\
+$\omega$        &  \verb!\omega!  &
+$\Gamma$        &  \verb!\Gamma!  &
+$\Delta$        &  \verb!\Delta!  &
+$\Theta$        &  \verb!\Theta!  \\
+$\Lambda$       &  \verb!\Lambda!  &
+$\Xi$           &  \verb!\Xi!  &
+$\Pi$           &  \verb!\Pi!  &
+$\Sigma$        &  \verb!\Sigma!  \\
+$\Upsilon$      &  \verb!\Upsilon!  &
+$\Phi$          &  \verb!\Phi!  &
+$\Psi$          &  \verb!\Psi!  &
+$\Omega$        &  \verb!\Omega!  
+\end{tabular}
+\footnotesize
+
+
+\end{multicols*}
+\end{document}

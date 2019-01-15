@@ -1,0 +1,167 @@
+\documentclass[12pt]{article}
+\usepackage[ngerman]{babel}\usepackage[babel=true]{microtype}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}\usepackage{lmodern}\usepackage{color}
+\usepackage[a4paper,includeheadfoot,
+top=2cm, 
+bottom=2cm, 
+left=2cm, 
+right=2cm]{geometry}
+\usepackage{listings}\usepackage{color}\usepackage{tikz}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{graphicx} %\includegraphics[width=0.7\textwidth]{bild.jpg}
+\usepackage{placeins} %for \FloatBarrier
+\usepackage[colorlinks=false,pdfborder={0 0 0}]{hyperref}%Hide RED PDF Border
+\usepackage{fancyhdr}\pagestyle{fancy}
+\usepackage{xcolor} \usepackage{comment} 
+\definecolor{hintergrund}{HTML}{B0C4E3} \definecolor{cobalt}{rgb}{0.0, 0.28, 0.67}
+\usepackage{sectsty} \sectionfont{\color{cobalt}} \subsectionfont{\color{cobalt}}
+\usepackage[labelfont={normalfont,bf}, format=hang, justification=RaggedRight, singlelinecheck=false]{caption}
+
+\lstset{literate=%Sonderzeichen in Listings
+    {Ö}{{\"O}}1
+    {Ä}{{\"A}}1
+    {Ü}{{\"U}}1
+    {ß}{{\ss}}1
+    {ü}{{\"u}}1
+    {ä}{{\"a}}1
+    {ö}{{\"o}}1
+    {~}{{\textasciitilde}}1
+}
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+  backgroundcolor=\color{white},   % choose the background color;
+  basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  deletekeywords={...},            % if you want to delete keywords from the given language
+ % escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=single,	                   % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},       % keyword style
+  language=R,                 % the language of the code
+  otherkeywords={*,...},           % if you want to add more keywords to the set
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=0,                    % the step between two line-numbers
+  stringstyle=\color{mymauve},     % string literal style
+  tabsize=2,	                   % sets default tabsize to 2 spaces
+  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+\addto\captionsngerman{%Abkürzen der Überschriften
+\renewcommand{\figurename}{Schritt}
+\renewcommand{\tablename}{Tab.}
+}
+
+\lstdefinestyle{base}{
+  language=R,
+  emptylines=1,
+  breaklines=true,
+  alsoletter={.},
+  basicstyle=\ttfamily\color{blue},
+  keywordstyle=\color{blue},
+  moredelim=**[is][\color{red}]{@}{@},
+}
+
+\lhead{} \chead{Installation von \LaTeX~unter MacOS} \rhead{Universität Bonn}
+\lfoot{} \cfoot{\thepage} \rfoot{Stand: \today}
+
+
+\begin{document}
+\section*{Kurzanleitung:}
+\begin{enumerate}
+\item Lade und installiere MacTeX
+%\item setze in den den Einstellungen das Encoding auf UTF-8 und die Schriftart auf Andale Mono.
+\item Installiere Texmaker
+\end{enumerate}
+
+
+
+\section*{Schrittweise:}
+\noindent
+\begin{minipage}[c]{\textwidth}
+\centering
+\captionof{figure}{Lade die Datei MacTeX.pkg hier herunter: \url{http://tug.org/mactex/}}
+\includegraphics[width=.8\textwidth]{mac/p1.png}
+\end{minipage}
+\FloatBarrier
+
+
+
+\noindent
+\begin{minipage}[c]{\textwidth}
+\centering
+\captionof{figure}{Installiere MacTeX}
+\includegraphics[width=.8\textwidth]{mac/p2.png}
+\\~\\
+%\captionof{figure}{Starte TeXShop unter Programme-TeX-TeXShop}
+%\includegraphics[width=.8\textwidth]{mac/p3.png}
+\end{minipage}
+\FloatBarrier
+
+\noindent
+\begin{minipage}[c]{\textwidth}
+\centering
+\captionof{figure}{Nun musst du noch Texmaker von \url{http://www.xm1math.net/texmaker/download.html} herunterladen und installieren.}
+\includegraphics[width=\textwidth]{windows/texmaker1.png}
+\\~\\~\\
+\captionof{figure}{Starte jetzt Texmaker und gehe auf Optionen>Texmaker konfigurieren}
+\includegraphics[width=\textwidth]{windows/texmaker2.png}
+\end{minipage}
+
+
+\noindent
+\begin{minipage}[c]{\textwidth}
+\centering
+\captionof{figure}{Mache einen Haken bei Unterordner ''build'' für die Ausgabe nutzen.}
+\includegraphics[width=.9\textwidth]{windows/texmaker3.png}
+\\~\\~\\
+\captionof{figure}{Erstelle dein erstes \LaTeX Dokument}
+\includegraphics[width=\textwidth]{windows/texmaker5.png}
+\end{minipage}
+
+
+\begin{center}
+Gratulation! Du hast nun eine verwendbare LaTeX-Installation.
+\end{center}
+
+\begin{comment}
+
+\noindent
+\begin{minipage}[c]{\textwidth}
+\centering
+\captionof{figure}{Stelle in den Einstellungen die Schriftart auf Andale Mono um}
+\includegraphics[width=.8\textwidth]{mac/p4.png}
+\\~\\
+\captionof{figure}{Ändere außerdem das Encoding auf UTF-8}
+\includegraphics[width=.8\textwidth]{mac/p5.png}
+\end{minipage}
+\FloatBarrier
+
+
+
+\noindent
+\begin{minipage}[c]{\textwidth}
+\centering
+\captionof{figure}{Erstelle ein Beispieldokument, in dem du oben rechts bei Templates das LaTeXTemplate auswählst. Speichere diese Datei in einem neuen Ordner. Stelle dabei als Kodierung UTF-8 ein.}
+\includegraphics[width=.75\textwidth]{mac/p6.png}
+\\~\\
+\captionof{figure}{Klicke danach oben links auf den Setzen-Button}
+\includegraphics[width=.75\textwidth]{mac/p7.png}
+\begin{center}Du solltest nun dein erstes fertiges LaTeX-Dokument sehen.\end{center}
+\end{minipage}
+\FloatBarrier
+\end{comment}
+\end{document}

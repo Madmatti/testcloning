@@ -1,0 +1,90 @@
+\include{preamble}
+\usepackage{multirow}
+\usepackage{colortbl}		% farbige Tabellen
+
+%zum Ausblenden auskommentieren.
+\renewenvironment{Antwort}{\begin{ansbox}\textbf{Lösung:~}}{\end{ansbox}}
+
+%\aufgabe{Aufgabenstellung}{Beispielcode usw.}{Lösung}
+\newcommand{\abstandVorResult}{-15pt}
+\newcommand{\abstandVorListing}{-10pt}
+\newcommand{\abstandNachListing}{-30pt}
+
+\begin{document}
+\ueberschrift{Aufgaben Tag 1}
+\\~\\~
+\textbf{Bemerkung} \bcode{}Die Umrandungen um die Aufgaben dienen nur der Übersichtlichkeit und sollen nicht in der Ausgabe auftauchen.\vspace{-10pt}
+
+\section{Erstelle ein Textdokument "`erstesDokument.tex"'. Tippe dann den folgenden Code ab und speichere das Dokument. Versuche es dann zu kompilieren und öffne die erzeugte PDF.}
+\vspace{\abstandVorListing}\begin{lstlisting}[style=Latex]
+\documentclass[a4paper]{article}
+\usepackage[ngerman]{babel}
+\usepackage{lmodern}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[top=2cm, left=3cm, right=2cm, bottom=2cm]{geometry}
+\begin{document}
+ Mein erstes \LaTeX~ Dokument
+\end{document}
+\end{lstlisting}\vspace{\abstandNachListing}
+
+\section{Generiere die Nachfolgende Ausgabe. \textbf{Hinweis: }Die Einrückungen am Anfang stammen nicht von einem manuellen Abstand, es handelt sich hierbei um Absatzeinrückungen.}
+\result{
+Dies ist der erste Absatz. Er ist so lang, dass ein Zeilenumbruch unumgänglich ist 
+(es sei denn, man würde eine extrem kleine Schrift verwenden).
+Dies ist der zweite Absatz, welcher ganz normal eingerückt ist.\\
+Hierbei handelt es sich um eine neue Zeile im selben Absatz.\\[0.5cm]
+Dies ist ebenfalls eine neue Zeile, jedoch ist sie 0.5cm nach unten verschoben.
+}
+
+\section{Erzeuge mit de Präambel aus Aufgabe 1 die folgende Ausgabe}
+\result{
+\noindent Die Umlaute: Ä ä Ö ö Ü ü.
+}
+Was passiert wenn du in der Präambel die Zeilen 4 auskommentierst?
+
+\begin{Antwort}%\vspace{10pt}
+\begin{lstlisting}[style=latex] 
+Dies ist der erste Absatz. Er ist so lang, dass ein 
+Zeilenumbruch unumgänglich ist (es sei denn, man würde eine 
+extrem kleine Schrift verwenden).
+
+Dies ist der zweite Absatz, welcher ganz normal eingerückt ist.\\
+Hierbei handelt es sich um eine neue Zeile im selben Absatz.\\[2cm]
+Dies ist ebenfalls eine neue Zeile, jedoch ist sie 2cm nach unten verschoben.\\
+Dieser Text beginnt links \hfill und endet rechts.\\
+Außerdem haben wir Platzhalter \hrulefill\ und 
+tolle Punkte \dotfill
+\end{lstlisting}\vspace{-25pt}
+\end{Antwort}
+
+\section{Generiere die nachfolgende Ausgabe.}
+\result{
+{\noindent \itshape Dieser erste Absatz ist komplett in kursiver Schrift verfasst. Dies erkennt man an den gekippten Buchstaben, die sich vom nachfolgenden Absatz deutlich unterscheiden.}
+
+\noindent  Hier ist nun alles wieder normal. Um einzelne Worte \textbf{fett} zu schreiben oder \textsc{in Großbuchstaben} zu verfassen, muss nicht immer die ganze Umgebung geändert werden!
+}
+
+\begin{Antwort}%\vspace{10pt}
+\begin{lstlisting}[style=latex] 
+{\noindent \itshape Dieser erste Absatz ist komplett in kursiver 
+Schrift verfasst. Dies erkennt man an den gekippten Buchstaben, 
+die sich vom nachfolgenden Absatz deutlich unterscheiden.}
+
+\noindent  Hier ist nun alles wieder normal. Um einzelne Worte 
+\textbf{fett} zu schreiben oder \textsc{in Großbuchstaben} zu 
+verfassen, muss nicht immer die ganze Umgebung geändert werden!
+\end{lstlisting}\vspace{-25pt}
+\end{Antwort}
+
+\section{Gehe auf \texttt{http://www.loremipsum.de/} und erzeuge einen Platzhaltertext, mit 1000 Worten und füge diesen Text in ein neues Latex-Dokument ein. (Vergesst die Präambel nicht)}
+
+\section{Nutze den Text aus der vorherigen Aufgabe und beschneide die Seitenränder wie folgt:\\
+links: 3cm, rechts: 3cm, oben 7cm und unten 1cm.}
+
+
+\section{\label{aufg:text}
+Nun erweitere den Text noch dadurch, dass du Gliederungsebenen Kapitel (section) und Unterkapitel (Subsections) hinzufügst. Versuche ein Inhaltsverzeichnis zu erstellen. }
+
+
+\end{document}

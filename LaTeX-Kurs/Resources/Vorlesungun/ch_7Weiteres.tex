@@ -1,0 +1,97 @@
+\section{Weiteres}
+
+\subsection{selber definieren}
+
+\begin{frame}[fragile]
+\frametitle{Befehle definieren}
+\begin{itemize}[<+->]
+  \item mit \lstinline[style=Latex]+\newcommand{\<Befehl>}[<AnzArgs>][<Std>]{<wastun>}+ können eigene Befehle definiert werden
+  \item Befehlsnamen dürfen nur aus Buchstaben bestehen
+  \item mit \texttt{<AnzArgs>} kann die Anzahl der übergebenen Argumente festgelegt werden. Diese können dann mit \lstinline[style=Latex]+#1+, \lstinline[style=Latex]+#2+, \ldots abgerufen werden.
+  \item mit \texttt{<Std>} kann ein Standardwert für das erste Argument gegeben werden. Dadurch wird dieses optional.
+  \item \lstinline[style=Latex]+\renewcommand+ überschreibt einen bestehenden Befehl
+  \item durch \lstinline[style=Latex]+\ensuremath+ wird der Befehl falls nötig in den Mathematikmodus versetzt
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Beispiel -- Befehle}
+\begin{lstlisting}[style=Latex]
+\newcommand\eps{\ensuremath\varepsilon}
+\newcommand\cboxes[2]{
+  \begin{center}
+    \begin{tabular}{|c|c|}\hline #1 & #2 \\\hline\end{tabular}
+  \end{center}
+}
+\eps \\
+\cboxes{Hallo}{Welt}
+\end{lstlisting}
+\newcommand\eps{\ensuremath\varepsilon}
+\newcommand\cboxes[2]{
+  \begin{center}
+    \begin{tabular}{|c|c|}\hline #1 & #2 \\\hline\end{tabular}
+  \end{center}
+}
+\eps \\
+\cboxes{Hallo}{Welt}
+\end{frame}
+
+
+
+\subsection{Folien}
+
+\begin{frame}[fragile]
+\frametitle{Folien}
+\begin{itemize}[<+->]
+  \item als Dokumentklasse muss \texttt{beamer} verwendet werden
+  \item es stehen viele verschiedene Themes zur Auswahl, einen Überblick erhält man unter \url{http://www.namsu.de/latex/themes/uebersicht_beamer.html} \\
+    Diese werden mit \lstinline[style=Latex]+\usetheme{<Themenname>}+ aktiviert
+  \item verwendet man \texttt{beamer} mit der Option \texttt{handout} werden alle Übergänge deaktiviert
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{frame-Umgebung}
+\begin{itemize}[<+->]
+  \item jede Folie ist in der Beamer-Klasse eine \texttt{frame}-Umgebung oder alternativ durch \lstinline[style=Latex]+\frame{<Inhalt>}+.
+  \item mit \lstinline[style=Latex]+\frametitle{<Titel>}+ kann der Seitentitel festgelegt werden
+  \item einen Untertitel erhält man mit \lstinline[style=Latex]+\subtitle{<Untertitel>}+
+  \item eine vorgefertigte Titelseite erhält man mittels \lstinline[style=Latex]+\titlepage+
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Overlays}
+\begin{itemize}[<+->]
+  \item der Befehl \lstinline[style=Latex]+\pause+ erzeugt eine Folie mit dem Inhalt bis zur Pause und eine weitere mit der gesamten Seite
+  \item Aufzählungen erhalten als zusätzlichen optionalen Parameter \lstinline[style=Latex]+<<Pausenart>>+.\\
+    Dabei bedeutet eine Zahl $n$, dass etwas in Folie $n$ passiert, ein ``+'' deckt das Item auf oder verdeckt es und ein ``-'' lässt es bestehen, ``alert@$n$'' markiert das Item in Folie $n$. Mit ``|'' können mehrere Anweisungen hintereinander stehen.
+  \item steht eine Pausenart als optionaler Parameter an der Aufzählungsumgebung, so gilt dies für die gesamte Aufzählung inkl. Unteraufzählungen.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Beispiel}\vspace{-5pt}
+\begin{lstlisting}[style=Latex]
+\begin{itemize}
+  \item Einleitung
+  \item<2-> daher
+  \item<3-|alert@3> aber Achtung!
+  \item<4> ist nur in 4 da
+  \item<5-> Schlussfolgerung
+\end{itemize}
+\end{lstlisting}\vspace{-25pt}\pause
+\begin{itemize}
+  \item Einleitung
+  \item<2-> daher
+  \item<3-|alert@3> aber Achtung!
+  \item<4> ist nur in 4 da
+  \item<5-> Schlussfolgerung
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}\frametitle{mehr zur Klasse Beamer}
+\url{http://www.ctan.org/tex-archive/macros/latex/contrib/beamer/doc/beameruserguide.pdf}
+\end{frame}

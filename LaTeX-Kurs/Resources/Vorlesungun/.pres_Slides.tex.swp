@@ -1,0 +1,29 @@
+\documentclass[babel,german,aspectratio=169]{beamer}
+\include{preambleSlides}
+\newtheorem{satz}{Satz}[section]
+ %Für Math und Referenzen
+%\newcommand{\ins}[1]{\chead{#1} \input{#1} \newpage}%ohne das gibt es nen Fehler.....
+
+
+
+\begin{document}
+
+\begin{frame}<handout:0>% Die erste Folie muss bleiben. Sonst funktioniert nichts...
+	\visible<1>{\titlepage}
+	\frametitle{Matthias und Dennis präsentieren:}
+	\pause% es hängt an diesem Pause Befehl.... ohne den geht es sonst nicht
+	\vspace{-70mm}
+	% jetzt kommt noch eine Logoseite. Dann klappt alles wie gewohnt.
+	\visible<2->{\center{\includegraphics[width=0.6\textwidth]{images/LaTeX_logo.png}}}
+\end{frame}
+
+
+%\include{ch_1Grundlagen}
+%\include{ch_2Textsatz}
+%\include{ch_3TabellenListenBoxen}
+%\include{ch_4Bilder}
+\include{ch_5Mathematik}
+\include{ch_6Referenzen}
+\include{ch_7Weiteres}
+
+\end{document}

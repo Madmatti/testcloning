@@ -1,0 +1,15 @@
+\documentclass[a4paper]{article}
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{fancyhdr}\pagestyle{fancy}
+\lhead{Linke Kopfzeile}
+\rhead{rechte Kopfzeile}
+\lfoot{linke Fußzeile} 
+\cfoot{}
+\rfoot{Seitenzahl: \thepage}
+\begin{document}
+"`Hol mit bitte die Rührschüssel"' sagte Peter.\\
+``Sorry I dont speak German'' antwortete Samantha.
+\end{document}

@@ -1,0 +1,122 @@
+\documentclass[12pt]{article}
+\usepackage[ngerman]{babel}\usepackage[babel=true]{microtype}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}\usepackage{lmodern}\usepackage{color}
+\usepackage[a4paper,includeheadfoot,
+top=2cm, 
+bottom=1cm, 
+left=2cm, 
+right=2cm]{geometry}
+\usepackage{fancyhdr}\pagestyle{fancy}
+\usepackage{placeins}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,mathtools}
+\rhead{\vspace{-40pt}\includegraphics[scale=0.6]{logofsvwl.pdf}}
+\cfoot{}
+\lhead{}
+
+ \def\chopline#1 \\{%für zwei Parameter \def\chopline#1;#2 \\{
+  \def\name{#1}%\vorname{#2}
+ }
+ %\renewcommand{\familydefault}{\sfdefault}
+ \newif\ifmore\moretrue
+ 
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}} % linksbündig mit Breitenangabe
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}} % zentriert mit Breitenangabe
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}} % rechtsbündig mit Breitenangabe
+\newcommand{\ltab}{\raggedright\arraybackslash} % Tabellenabschnitt linksbündig
+\newcommand{\ctab}{\centering\arraybackslash} % Tabellenabschnitt zentriert
+\newcommand{\rtab}{\raggedleft\arraybackslash} % Tabellenabschnitt rechtsbündig
+\renewcommand{\labelitemii}{$\blacksquare$}
+\renewcommand{\labelitemiii}{$\square$}
+%
+%
+%
+\begin{document} 
+\newread\quelle
+\openin\quelle=Teilnehmer.txt
+\loop\read\quelle to \zeile\ifeof\quelle\global\morefalse
+\else\expandafter\chopline\zeile\\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                  Seite 1                       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{center}~\\[1cm]
+{\fontsize{40}{0} \selectfont \textsf{\textbf{Bestätigung}}} \\[2cm]
+   
+{\fontsize{20}{0} \selectfont \textbf{\name}} \\[2cm]
+   
+{\fontsize{16}{0} \selectfont hat an der Lehrveranstaltung\\~\\der Fachschaft Volkswirtschaftslehre }\\[2cm]
+
+   
+{\fontsize{22}{0} \selectfont \textbf{\glqq Einführungskurs \LaTeX\grqq}}\\[2cm]
+   
+{\fontsize{16}{0} \selectfont in der Zeit vom 08.06 bis 10.06.2018 teilgenommen.} \\[2cm]
+   
+{\fontsize{16}{0} \selectfont Die Lehrveranstaltung umfasste insgesamt 20\\~\\ Unterrichtsstunden à 45 min} \\[3cm]
+\begin{flushleft}
+Bonn, den \today
+\end{flushleft}~\\[0.5cm]
+\FloatBarrier
+\vspace{1,5cm}
+
+\begin{tabular}{ccc} \cline{1-1} \cline{3-3}
+Fachschaft  & ~~~~~~~~~~~~~~ & Dennis Kubitza\\
+ Volkswirtschaftslehre & ~~~~~~~~~~~~~~ & (Dozent) \\
+\end{tabular}
+
+\end{center}
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                  Seite 2                       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+~\\
+\noindent
+{\fontsize{20}{0} \selectfont \textbf{\underline{Inhalte der Veranstaltung:}}}\\
+\begin{itemize}
+\item {\large Grundlagen}
+\begin{itemize}
+\item Verwendung von Texmaker
+\item Verwendung von Präambeln
+\item Einbindung von Programmpaketen
+
+\end{itemize}
+\item {\large Textsatz}
+	\begin{itemize}
+	\item Textauszeichnung
+	\item Einrichtung des Seitenformates
+	\item Strukturierung von Dokumenten
+		\begin{itemize}
+		\item Erstellen eines Inhaltsverzeichnisses
+		\item Veränderung der Seitennummerierung
+		\item Verwendung der Kopf- und Fußzeile
+		\item Verwendung von Gliederungsebenen 
+		\item Erstellung von Aufzählungen
+		\item Erstellung von Tabellen
+		\item Einbindung von Grafiken
+		\end{itemize}
+	\end{itemize}
+	
+\item{\large Wissenschaftliches Schreiben}
+\begin{itemize}
+	\item {Erstellung von Theoremen und Definitionen}
+	\item {Setzung mathematischer Formeln}
+	\item {Verwendung interner Referenzen}
+	\item {Verwendung von Bibliographien}
+\end{itemize}
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%               Nächstes Dokument                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\setcounter{page}{1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%               Ende des Dokuments               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Eingabe darf keine Leerzeilen und keine letzte leere Zeile enthalten!
+\fi\ifmore\repeat\closein\quelle
+ 
+\end{document}

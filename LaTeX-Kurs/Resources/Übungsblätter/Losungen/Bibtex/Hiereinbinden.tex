@@ -1,0 +1,27 @@
+\documentclass[11pt]{article}
+\usepackage{comment} %includecomment{Antwort} oder excludecomment{Antwort}
+\usepackage[ngerman]{babel}\usepackage[babel=true]{microtype}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\usepackage{natbib}
+\bibliographystyle{abbrvnat}
+\setcitestyle{authoryear,open={((},close={))}}
+
+\usepackage{dcolumn}
+\usepackage[
+	top=2.5cm, 
+	bottom=2.5cm, 
+	left=2cm, 
+	right=2cm]{geometry}
+\usepackage[onehalfspacing]{setspace}
+\usepackage{fancyhdr}\pagestyle{fancy}
+\usepackage[colorlinks=false,pdfborder={0 0 0}]{hyperref}%Hide RED PDF Border
+
+\begin{document}
+\section{Ein neuer Abschnitt}
+Das ist ein Zitat und hier kommt der Style.\cite[see][chap 2]{karotten} Auf der nächsten Seite wird dann die Bibliographie erstellt.
+
+\bibliography{Bibliographie}
+\end{document}

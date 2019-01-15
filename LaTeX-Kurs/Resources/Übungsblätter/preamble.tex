@@ -1,0 +1,67 @@
+\documentclass[11pt]{article}
+\usepackage{comment} %includecomment{Antwort} oder excludecomment{Antwort}
+\usepackage[ngerman]{babel}\usepackage[babel=true]{microtype}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[a4paper,includeheadfoot,
+	top=2cm, 
+	bottom=2cm, 
+	left=2cm, 
+	right=2cm]{geometry}
+\usepackage{color}
+\usepackage{listings}
+\usepackage[tikz]{mdframed}%\begin{mybox} \end{mybox}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{graphicx} %\includegraphics[width=0.7\textwidth]{bild.jpg}
+\usepackage{placeins} %for \FloatBarrier
+\usepackage{caption} 
+\usepackage[colorlinks=false,pdfborder={0 0 0}]{hyperref}%Hide RED PDF Border
+\usepackage[showonlyrefs]{mathtools}%Math equations erstellen: \numberthis \label{key} abrufen:\ref{key}\eqref{key}
+\usepackage{sectsty}
+\usepackage{fancyhdr}\pagestyle{fancy}
+\usepackage{xcolor} \definecolor{hintergrund}{HTML}{B0C4E3} \definecolor{cobalt}{rgb}{0.0, 0.28, 0.67}
+
+
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\argmax}{argmax}
+
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+\input{settingsListing}
+%Seite Code einbinden:
+%\lstinputlisting[language=R,style=base]{Tag1-Uebungsblatt.R}
+
+\addto\captionsngerman{ %Abkürzen der Figureüberschriften
+\renewcommand{\figurename}{Abb.}
+\renewcommand{\tablename}{Tab.}
+}
+\lhead{Einführung in \LaTeX}
+\chead{SoSe 2017} 
+\rhead{Universität Bonn}
+\lfoot{} \cfoot{\thepage}% \rfoot{Stand: \today}
+
+\newmdenv[
+  outerlinewidth      = 1,
+  backgroundcolor     = red!25,
+  roundcorner         = 5pt,
+  frametitlebelowskip = 0pt,
+  skipabove           = 0.5\baselineskip,
+  skipbelow           = 0.1\baselineskip,
+]{ansbox}
+
+%\renewcommand{\labelenumi}{\alph{enumi})} % nummerieren mit Buchstaben
+\newcommand{\code}[1]{\texttt{#1}} % Codeauszeichnung
+\newcommand{\qcode}[1]{\glqq \texttt{\textbf{#1}}\grqq}
+\newcommand{\bcode}[1]{\texttt{\textbf{#1}}} %fetter Code
+
+\excludecomment{Antwort} %hier stehen lassen! Änderung im eig Dokument
+
+% Überschrift Aufgabenblatt
+\usepackage{calc}
+\newcommand{\ueberschrift}[1]{\noindent \colorbox{hintergrund}{\parbox[t]{\textwidth - 2 \fboxsep}{\centering \LARGE \textbf{#1:}}}}
+\usepackage{titlesec}
+\sectionfont{\color{cobalt}} \subsectionfont{\color{cobalt}}
+\titleformat{\section}
+ {}{}{1em}{{\color{cobalt}\normalfont\bfseries Aufgabe \thesection.}~}
+\usepackage{framed}
+\newcommand\result[1]{\vspace{\abstandVorResult}\begin{framed}#1\end{framed}}

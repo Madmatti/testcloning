@@ -1,0 +1,62 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Praeambel hier stehen nur Definitionen der   %
+% Text kann weiter unten eingegeben werden     %
+% LaTeX-Kurs 2018                              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[a4paper]{article}
+\usepackage[ngerman]{babel}
+\usepackage{lmodern}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+%Legt die Seitenraender fest
+\usepackage[top=2cm,left=3cm,right=2cm,bottom=2cm]{geometry}
+
+%Erstellt anklickbare Verweise ohne rote Raender
+\usepackage[colorlinks=false,pdfborder={0 0 0}]{hyperref}
+
+%damit Grafiken eingebunden werden können
+\usepackage{graphicx}% mit \includegraphics[width=\textwidth]{<pfad.endung>}
+
+%um mathematische Symbole zu verwenden
+\usepackage{amsmath,amssymb,amsfonts,amsthm,amsbsy,mathtools}
+
+%einfache Kopf- und Fusszzeilen
+\usepackage{fancyhdr}\pagestyle{fancy}
+% aenderung über l c r head foot i.e. \chead{Titel}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ende der Praeambel und Beginn des Dokuments  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\section{Das erste Kapitel}
+Meine \LaTeX~ Dokumentenvorlage:)
+Ab hier könnt Ihr wissen schaffen! Mit Formeln: $f(x)=x^2$ oder \[f(x)=x^2\]
+
+Mit Tabellen: 
+\begin{table}[!b]
+	\begin{center}
+		\begin{tabular}{|c|c|}
+			\hline 
+			11 & 12 \\ 
+			\hline 
+			21 & 22 \\ 
+			\hline 
+		\end{tabular} 
+		\caption{Das ist die Beschriftung, die im Tabellenverzeichnis erscheint}
+	\end{center}	
+\end{table}
+
+
+\newpage
+%Änderung der mittleren Kopfzeile
+\chead{Anhang}
+\pagenumbering{Roman}
+\tableofcontents
+\listoffigures
+\listoftables
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ende des Dokuments. Ab hier werden           %
+% alle Eingaben ignoriert                      %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

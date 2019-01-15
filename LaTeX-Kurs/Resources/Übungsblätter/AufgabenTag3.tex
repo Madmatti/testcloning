@@ -1,0 +1,354 @@
+\include{preamble}
+\usepackage{multirow}
+\usepackage{colortbl}		% farbige Tabellen
+
+%zum Ausblenden auskommentieren.
+%\renewenvironment{Antwort}{\begin{ansbox}\textbf{Lösung:~}}{\end{ansbox}}
+%\aufgabe{Aufgabenstellung}{Beispielcode usw.}{Lösung}
+\newcommand{\abstandVorResult}{-15pt}
+\newcommand{\abstandVorListing}{-10pt}
+\newcommand{\abstandNachListing}{-30pt}
+
+\begin{document}
+\ueberschrift{Aufgaben Tag 3}
+\section{Erstelle die folgenden Formeln in \LaTeX:}\label{AG:1}
+\result{\noindent
+\[
+f(x)=3x^2-5x+42
+\]
+\[
+x=(x_1,x_2,...,x_n)
+\]
+\[
+r=\frac{a}{b}
+\]
+\begin{align}
+x_i &= a^2 + b^2 & (i<5) \label{eq:1}\\
+x_i &= a + b & (i=5) \label{eq:2}
+\end{align}
+\begin{align}
+\pi = 3,1415... \label{eq:1}
+\end{align}
+}
+
+\begin{Antwort}
+\begin{lstlisting}[style=latex]
+\[
+f(x)=3x^2-5x+42
+\]
+\[
+x=(x_1,x_2,...,x_n)
+\]
+\[
+r=\frac{a}{b}
+\]
+\begin{align}
+x_i &= a^2 + b^2 & (i<5) \label{eq:1}\\
+x_i &= a + b & (i=5) \label{eq:2}
+\end{align}
+\begin{align}
+\pi = 3,1415... \label{eq:1}
+\end{align}
+\end{lstlisting}
+\end{Antwort}
+\newpage
+
+\section{Versuche, die folgenden Formeln in \LaTeX\, zu übertragen:}
+\result{\noindent
+Um Seitenlängen in einem rechtwinkligen Dreieck zu bestimmen, werden die Funktionen Sinus ($\sin$) und Kosinus ($\cos$) verwendet. Dabei gilt
+\[ \textrm{Sinus eines Winkels} = \frac{\textrm{Gegenkathete des Winkels}}{\textrm{Hypothenuse}} \]
+sowie 
+\[ \textrm{Kosinus eines Winkels} = \frac{\textrm{Ankathete des Winkels}}{\textrm{Hypothenuse}}. \]
+Dies wird auch ausgedrückt durch $\sin(\alpha)=\frac ac$ und $\cos(\alpha)=\frac bc$.\\
+Durch die Definition der $e$-Funktion kann man dies auch darstellen als
+\begin{align*}
+\sin(x) & = \sum_{n=0}^\infty (-1)^n \frac{x^{2n+1}}{(2n+1)!}\\
+	& = \frac{x}{1!} - \frac{x^3}{3!} + \frac{x^5}{5!} - \ldots.
+\end{align*}
+Wir können beobachten, dass gilt
+\begin{align}
+\sin^{(4n+k)}(0) = 
+	\begin{cases}
+	0 & \textrm{wenn } k=0 \\
+	1 & \textrm{wenn } k=1 \\
+	0 & \textrm{wenn } k=2 \\
+	-1 & \textrm{wenn } k=3
+	\end{cases}	
+\end{align}
+}
+
+\begin{Antwort}
+\begin{lstlisting}[style=latex]
+\noindent
+Um Seitenlängen in einem rechtwinkligen Dreieck zu bestimmen, werden die Funktionen Sinus ($\sin$) und Kosinus ($\cos$) verwendet. Dabei gilt
+\[ \textrm{Sinus eines Winkels} = \frac{\textrm{Gegenkathete des Winkels}}{\textrm{Hypothenuse}} \]
+sowie 
+\[ \textrm{Kosinus eines Winkels} = \frac{\textrm{Ankathete des Winkels}}{\textrm{Hypothenuse}}. \]
+Dies wird auch ausgedrückt durch $\sin(\alpha)=\frac ac$ und $\cos(\alpha)=\frac bc$.\\
+Durch die Definition der $e$-Funktion kann man dies auch darstellen als
+\begin{align*}
+\sin(x) & = \sum_{n=0}^\infty (-1)^n \frac{x^{2n+1}}{(2n+1)!}\\
+	& = \frac{x}{1!} - \frac{x^3}{3!} + \frac{x^5}{5!} - \ldots.
+\end{align*}
+Wir können beobachten, dass gilt
+\begin{align}
+\sin^{(4n+k)}(0) = 
+	\begin{cases}
+	0 & \textrm{wenn } k=0 \\
+	1 & \textrm{wenn } k=1 \\
+	0 & \textrm{wenn } k=2 \\
+	-1 & \textrm{wenn } k=3
+	\end{cases}	
+\end{align}
+\end{lstlisting}
+\end{Antwort}
+\newpage
+
+\section{Erstelle die folgenden Matrizen und die Fallunterscheidung:}
+\result{\noindent
+Matrizen in Inlineformeln $\begin{pmatrix} 
+3 & 2 & 1 \\ 
+1 & 0 & 2\\
+\end{pmatrix} \cdot 
+\begin{pmatrix} 
+1 \\ 
+0 \\
+4
+\end{pmatrix}
+=
+\begin{pmatrix} 
+7\\
+9
+\end{pmatrix}$
+sehen sehr schlecht aus. Besser sind diese in abgesetzten Formeln:
+\begin{align}
+\begin{pmatrix} 
+3 & 2 & 1 \\ 
+1 & 0 & 2\\
+\end{pmatrix} \cdot 
+\begin{pmatrix} 
+1 \\ 
+0 \\
+4
+\end{pmatrix}
+=
+\begin{pmatrix} 
+7\\
+9
+\end{pmatrix}
+\label{mat:test}
+\end{align}
+Hier geht der Text nach Matrix \eqref{mat:test} weiter. Das Kronecker-Delta ist wie folgt definiert:
+\[
+\delta_{ij}:=
+\begin{cases}
+0& \text{wenn } i \neq j\\
+1& \text{wenn } i = j
+\end{cases}
+\]
+Zuletzt verwenden wir eine andere Schreibweise für die Matrix \eqref{mat:test} und lassen die Nummerierung weg.
+\begin{align*}
+\begin{bmatrix} 
+3 & 2 & 1 \\ 
+1 & 0 & 2\\
+\end{bmatrix} \cdot 
+\begin{bmatrix} 
+1 \\ 
+0 \\
+4
+\end{bmatrix}
+=
+\begin{bmatrix} 
+7\\
+9
+\end{bmatrix}
+\end{align*}
+}
+
+\begin{Antwort}
+\begin{lstlisting}[style=latex]
+\noindent
+Matrizen in Inlineformeln $\begin{pmatrix} 
+3 & 2 & 1 \\ 
+1 & 0 & 2\\
+\end{pmatrix} \cdot 
+\begin{pmatrix} 
+1 \\ 
+0 \\
+4
+\end{pmatrix}
+=
+\begin{pmatrix} 
+7\\
+9
+\end{pmatrix}$
+sehen sehr schlecht aus. Besser sind diese in abgesetzten Formeln:
+\begin{align}
+\begin{pmatrix} 
+3 & 2 & 1 \\ 
+1 & 0 & 2\\
+\end{pmatrix} \cdot 
+\begin{pmatrix} 
+1 \\ 
+0 \\
+4
+\end{pmatrix}
+=
+\begin{pmatrix} 
+7\\
+9
+\end{pmatrix}
+\label{mat:test}
+\end{align}
+Hier geht der Text nach Matrix \eqref{mat:test} weiter. Das Kronecker-Delta ist wie folgt definiert:
+\[
+\delta_{ij}:=
+\begin{cases}
+0& \text{wenn } i \neq j\\
+1& \text{wenn } i = j
+\end{cases}
+\]
+Zuletzt verwenden wir eine andere Schreibweise für die Matrix \eqref{mat:test} und lassen die Nummerierung weg.
+\begin{align*}
+\begin{bmatrix} 
+3 & 2 & 1 \\ 
+1 & 0 & 2\\
+\end{bmatrix} \cdot 
+\begin{bmatrix} 
+1 \\ 
+0 \\
+4
+\end{bmatrix}
+=
+\begin{bmatrix} 
+7\\
+9
+\end{bmatrix}
+\end{align*}
+\end{lstlisting}
+\end{Antwort}
+
+\newpage
+
+\section{Arbeiten mit Zitaten:}
+\begin{enumerate}
+\item Suche auf \url{https://bonnus.ulb.uni-bonn.de/} den Artikel \glqq A theory of reciprocity\grqq~ von Armin Falk
+\item Erstelle in ein Dokument, in dem du die genannte Quelle als Bibitem einfügst 
+\item Zitiere die Quelle im Text
+\end{enumerate}
+
+\begin{minipage}[h]{\textwidth}
+Das Ergebnis sollte so ähnlich aussehen:
+
+\fbox{
+
+        \includegraphics[clip, trim=3cm 19.5cm 0.5cm 4cm, width=1.00\textwidth]{images/Literaturangabe2.pdf}
+}
+\end{minipage}
+\vspace{1cm}
+
+\begin{minipage}[h]{\textwidth}
+Verändere die Bibliographie jetzt so, dass in Klammern zuerst der Nachname und dann das Jahr steht:
+
+\fbox{
+
+        \includegraphics[clip, trim=3cm 19.5cm 0.5cm 4cm, width=1.00\textwidth]{images/Literaturangabe3.pdf}
+}
+\end{minipage}
+
+\section{Arbeiten mit Fußnoten:}
+Platziere die Literaturangaben aus dem letzten Dokument auf einer eigenen Seite und füge eine Fußnote im Text hinzu!
+
+\newpage
+\section{Erstelle eine Präsentation, die folgende Kriterien erfüllt:}
+\begin{itemize}
+  \item die erste Seite soll eine Titelseite sein.
+  \item auf der zweiten Seite soll das Inhaltsverzeichnis Punkt für Punkt aufgebaut werden.
+  \item auf der dritten Seite soll eine Auflistung von 5 Punkten sein, bei der die Punkte nacheinander erscheinen.
+  \item Setze auf die nächsten Folie mehrere Formeln, die nacheinander eingeblenden
+  \item Teste verschiedene Themen. Ein Auflistung findest unter \\
+  \url{http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html}
+\end{itemize}
+
+\begin{Antwort}
+\begin{lstlisting}[style=latex]
+\documentclass[aspectratio = 169]{beamer}
+\author{Dennis Kubitza}
+\title{Dies ist eine Präsentation}
+\usetheme{Singapore}
+
+
+\begin{document}
+\titlepage
+
+\begin{frame}
+\tableofcontents
+\end{frame}
+
+\section{5 Punkte}
+\begin{frame}
+Wie man in \eqref{eq:pythagoras} sieht.
+	\frametitle{5 Punkte}
+	\begin{enumerate}[<+->]
+		\item Punkt 1
+		\item Punkt 2
+		\item Punkt 3
+		\item Punkt 4
+		\item Punkt 5
+	\end{enumerate}
+\end{frame}
+
+\section{Formeln}
+\begin{frame}
+	\frametitle{Formeln}
+	\begin{align}
+	\label{eq:pythagoras}
+	a^2 &= c^2 - b^2 \\
+	a^2 + b^2 &= c^2
+	\end{align}
+	\pause
+	\[ \sum_{i=0}^\infty 2^{-i} =2 \]
+\end{frame}
+
+
+\end{document}
+\end{lstlisting}
+\end{Antwort}
+
+\section{Erstelle eine Referenz zur Gleichung \eqref{eq:2} aus Aufgabe \ref{AG:1}. }
+Hinweis: Verwende dazu \lstinline[style=Latex]+\usepackage[colorlinks=false,pdfborder={0 0 0}]{hyperref}+ in der Präambel, \lstinline[style=Latex]+\label{eq:2}+ in der Gleichung um einen Anker zu setzen und rufe diesen schließlich mit \lstinline[style=Latex]+\eqref{eq:2}+ im Text auf! Vergiss nicht, mehrmals auf kompilieren zu klicken, damit die Referenzen so aussehen: ''\texttt{(??)}''!
+
+
+\section{Zusatzaufgaben}
+\textbf{Zusatzaufgabe 1:} Versuche die folgende Formel mit den Nummerierungen und den geschweiften Klammern zu generieren. Erstelle anschließend einen Verweis auf die Gleichung \eqref{gleichung}!\\
+
+Im den komplexen Zahlen gilt:
+\begin{align}
+e^{\text{i}\varphi} 
+	& = \sum_{k=0}^\infty \frac{(\text{i}\varphi)^k}{k!}
+	= \sum_{l=0}^\infty \frac{(\text{i}\varphi)^{2l}}{(2l)!}
+	  + \sum_{l=0}^\infty \frac{(\text{i}\varphi)^{2l+1}}{(2l+1)!} \\
+	& = \underbrace{\sum_{l=0}^\infty (-1)^l \frac{(\text{i}\varphi)^{2l}}{(2l)!}}_{\cos\varphi}
+	  + \text{i} \underbrace{\sum_{l=0}^\infty (-1)^l \frac{(\text{i}\varphi)^{2l+1}}{(2l+1)!}}_{\sin\varphi} \label{gleichung}\\
+	& = \cos\varphi + \text{i} \sin\varphi
+\end{align}
+
+\begin{Antwort}
+\begin{lstlisting}[style=latex]
+\begin{align}
+
+e^{\text{i}\varphi} 
+	& = \sum_{k=0}^\infty \frac{(\text{i}\varphi)^k}{k!}
+	= \sum_{l=0}^\infty \frac{(\text{i}\varphi)^{2l}}{(2l)!}
+	+ \sum_{l=0}^\infty \frac{(\text{i}\varphi)^{2l+1}}{(2l+1)!} \\
+	& = \underbrace{\sum_{l=0}^\infty (-1)^l \frac{(\text{i}\varphi)^{2l}}{(2l)!}}_{\cos\varphi}
+	  + \text{i} \underbrace{\sum_{l=0}^\infty (-1)^l \frac{(\text{i}\varphi)^{2l+1}}{(2l+1)!}}_{\sin\varphi} \label{gleichung}\\
+	& = \cos\varphi + \text{i} \sin\varphi
+\end{align}
+\end{lstlisting}
+\end{Antwort}
+\newpage
+
+\section{Endaufgabe}
+Schreibe eine Arbeit (Bachelor/Masterarbeit, Diplomarbeit o.ä.) in \LaTeX. Kehre außerdem den langweiligen, schlechten WYSIWYG-Editoren wie Word o.ä. für immer den Rücken und schreibe fortan alle Texte nur noch in \LaTeX. Du wirst feststellen, dass du mit der Zeit schneller und sicherer in wirst, als du es in einem WYSIWYG-Editor jemals sein könntest.
+\end{document}

@@ -1,0 +1,729 @@
+\section{Bilder}
+\shorthandoff{"}
+\subsection{Bilddateien}
+
+\begin{frame}[fragile]
+\frametitle{Dateien einbinden}
+\begin{itemize}[<+->]
+  \item um externe Bilder in \LaTeX\ einzubetten muss in der Präambel das Paket \texttt{graphicx} durch \\
+\begin{center}
+\lstinline[style=Latex]+\usepackage{graphicx}+
+\end{center}
+eingebunden werden \vfill
+  \item ein Bild wird mittels \lstinline[style=Latex]+\includegraphics[<Parameter>]{<Datei>}+ eingebunden. \\
+Ein wichtiger Parameter ist
+  \begin{itemize}
+ %   \item \texttt{angle}: dreht das Bild um einen bestimmten Winkel
+    \item \texttt{scale}: streckt das Bild um einen Faktor (beachte \lstinline[style=Latex]+\textwidth+)
+ %   \item \texttt{height/width}: legt die Höhe/Breite fest
+ %   \item \texttt{bb}: definiert die Grenzen der Bilddatei in vier Werten
+ %   \item \texttt{clip}: wenn auf \texttt{true} gesetzt und zusammen mit \texttt{bb} verwendet, wird das Bild entsprechend zugeschnitten
+  \end{itemize}
+ % \item mit \lstinline[style=Latex]+\graphicspath{<Pfad>}+ kann angegeben werden, wo die Bilder liegen
+ % \item über \lstinline[style=Latex]+\DeclareGraphicsExtensions{<Endungen>}+ kann definiert werden, nach welchen Bildern standardmäßig gesucht wird
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{figure-Umgebung}
+\begin{itemize}[<+->]
+  \item die \texttt{figure}-Umgebung ist eine Gleitbox für Bilder
+  \item die Syntax ist
+  \begin{lstlisting}[style=Latex]
+\begin{figure}[<Pos>]
+<Bild>
+\end{figure}  
+  \end{lstlisting}
+  \item die Position wird angegeben durch verschiedene Buchstaben
+  \begin{itemize}
+    \item[h] das Bild wird auf der Momentanen Seite eingebunden
+    \item[t/b] das Bild wird oben / unten auf der Seite eingebunden
+    \item[p] das Bild kommt auf eine eigene Seite
+  \end{itemize}
+  \item zusätzlich ist der \lstinline[style=Latex]+\caption{<Text>}+-Befehl verfügbar, der dem Bild einen Untertitel verschafft
+ % \item viele Bilder können mittels \lstinline[style=Latex]+\subfigure+ nebeneinander eingefügt werden
+\end{itemize}
+\end{frame}
+
+   
+\begin{frame}[fragile]
+\frametitle{Beispiel}
+\begin{lstlisting}[style=Latex]
+\begin{figure}[h]
+  \includegraphics[width=.4\textwidth]{hypnotoad.png}
+  \caption{all glory to the hypnotoad}
+\end{figure}
+\end{lstlisting} \vspace{-25pt}
+\pause
+\begin{figure}[h]
+  \includegraphics[width=.4\textwidth]{images/hypnotoad.png}
+  \caption{all glory to the hypnotoad}
+\end{figure}
+\end{frame}
+
+\begin{comment}
+\subsection{TikZ}
+\begin{frame}
+\frametitle{TikZ}
+\begin{itemize}[<+->]
+  \item \textbf{T}ikZ \textbf{i}st \textbf{k}ein \textbf{Z}eichenprogramm
+  \item Vektorgrafiken direkt in \LaTeX\, erstellen
+  \item Vorteile:
+  \begin{itemize}
+    \item Alle Vorteile von \LaTeX
+    \item fügt sich nahtlos ein
+    \item ununterbrochener Workflow
+    \item schnell
+  \end{itemize}
+  \item Nachteile:
+  \begin{itemize}
+    \item Ergebnis erst zum Schluss
+    \item Einarbeitungszeit
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{TikZ}
+\begin{itemize}[<+->]
+  \item TikZ wird mittels \lstinline[style=Latex]+\usepackage{tikz}+ geladen
+  \item über \lstinline[style=Latex]+\usetikzlibrary{<library>}+ können zusätzliche Module geladen werden
+  \item Nutzung über \lstinline[style=Latex]+\tikz{<Befehle>}+ oder die \texttt{tikzpicture}-Umgebung.
+  \item Syntax: \lstinline[style=Latex]+\<Befehl>[<Parameter>](<Koordinate>){<Objekte>};+ 
+  \item bei Verschachtelung mehrerer Befehle erhält nur der erste Befehl einen \lstinline[style=Latex]+\+: \\
+  	\lstinline[style=Latex]+\draw (0,0) -- coordinate (b) (1,1);+  	
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Koordinaten}
+\begin{itemize}[<+->]
+  \item Koordinaten können auf verschiedene Weisen angegeben werden:
+  \begin{itemize}
+    \item kartesisch: (X,Y)
+    \item polar: ($\alpha$:r)
+    \item Name: (Name)
+  \end{itemize}
+  \item Gültige Einheiten sind alle \TeX-Einheiten, Standard ist cm.
+  \item Koordinaten können mittels 
+  \begin{lstlisting}[style=Latex]
+\coordinate (<Name>) at (<Position>);
+  \end{lstlisting}
+  gespeichert werden.
+  \begin{itemize}
+    \item steht \lstinline[style=Latex]+\coordinate+ direkt hinter einer Koordinate, so wird diese als Position übernommen
+    \item steht \lstinline[style=Latex]+\coordinate+ direkt hinter einer Verbindungslinie (\lstinline[style=Latex]+--+), so wird die Mitte der Strecke zwischen den beiden Koordinaten übergeben
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Berechnungen}
+\begin{itemize}[<+->]
+  \item Nach dem Einbinden des Pakets \texttt{calc} kann man mit Koordinaten rechnen:
+  \begin{itemize}
+    \item Punkt auf einer Geraden: (\$(K1)!.3!(K2)\$)
+    \item Addition: (\$(K1)+(K2)\$)
+    \item Addition zur letzten: ++(K1)
+  \end{itemize}
+  \item noch komplexere Berechnungen funktionieren mittels \texttt{intersection}:\\
+     \begin{lstlisting}[style=Latex]
+(intersection cs: first line={(0,0)--(2,1)}, 
+  second line={(0,1)--(2,-1)})
+\end{lstlisting}
+     berechnet den Schnittpunkt der Geraden durch (0,0)-(2,1) und (0,1)-(2,-1).
+     \item TikZ kann noch viel mehr, mehr dazu in der Dokumentation
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Beispiel}
+\begin{lstlisting}[style=Latex]
+\begin{tikzpicture}
+\coordinate (a) at (0,0);
+\coordinate (b) at (3,3);
+\draw (a) -- (b) 
+  -- ++ (-1,-2) coordinate (c) 
+  -- ($(a)!.5!(b)$) coordinate (d);
+\draw (0,2) -- (intersection cs: 
+  first line={(a)--(b)}, second line={(c)--(d)});
+\end{tikzpicture}
+\end{lstlisting}
+\begin{center}
+  \begin{tikzpicture}[thick,pkt/.style={circle,fill=red,inner sep = 3pt}]
+    \coordinate (a) at (0,0); 
+    \coordinate (b) at (3,3); 
+    \draw[thin,gray,step=1] (0,0) grid (3,3);
+    \draw (a) -- (b) -- ++ (-1,-2) coordinate (c) 
+    -- ($(a)!.5!(b)$) coordinate (d);
+    \pause 
+    \draw (0,2) -- (intersection cs: 
+    first line={(a)--(b)}, second line={(c)--(d)});
+  \end{tikzpicture}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Pfeile}
+\newcommand\entry[1]{\tikz{\draw[#1] (0,0) -- ++(1,0);}}
+\begin{itemize}
+  \item<1-> der Befehl zum ändern des Endpfeils ist \lstinline[style=Latex]+*linke Spitze*-*rechte Spitze*+
+  \item<2-> Spitzentypen sind
+  \begin{center}\begin{tabular}{l|l||l|l}
+    Code 		& Aussehen 		& Code		& Aussehen \\\hline
+    \lstinline[style=Latex]+-+ 	& \entry{-} 		& \lstinline[style=Latex]+-o+ 	& \entry{-o}\\
+    \lstinline[style=Latex]+->+ 	& \entry{->} 	& \lstinline[style=Latex]+-<+ 	& \entry{-<}\\
+    \lstinline[style=Latex]+->>+ 	& \entry{->>} 	& \lstinline[style=Latex]+-[+ 	& \entry{-[}\\
+    \lstinline[style=Latex]+->|+ 	& \entry{->|} 	& \lstinline[style=Latex]+-)+ 	& \entry{-)}\\
+    \lstinline[style=Latex]+-*+ 	& \entry{-*} 	& \lstinline[style=Latex]+-(+ 	& \entry{-(}
+  \end{tabular}\end{center} \pause
+  \item<3-> Beispiel:
+    \begin{lstlisting}[style=Latex]
+\draw[*->>] (0,0) -- (3,0.5) -- (6,0);
+    \end{lstlisting}
+    \tikz{\draw[*->>] (0,0) -- (3,0.5) -- (6,0);}
+  \item<4-> Das Paket \texttt{arrows} stellt noch viel mehr Pfeile zur Verfügung
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Stricharten}
+\newcommand\entry[1]{\texttt{#1}&\tikz{\draw[#1] (0,0) -- ++(1,0);}}
+\begin{itemize}[<+->]
+  \item Strichstärke: \\
+  \begin{center}\begin{tabular}{l|l||l|l}
+    Code 		& Aussehen 	& Code 	& Aussehen 	\\\hline
+    \entry{ultra thin} & \entry{very thin} \\
+    \entry{thin} & \entry{semithick} \\
+    \entry{thick} & \entry{very thick} \\
+    \entry{ultra thick}
+  \end{tabular}\end{center}
+  \item Strichart:\\[2mm]
+  \hspace*{-8mm}\begin{tabular}{l|l||l|l}
+    Code 		& Aussehen 	& Code 	& Aussehen 	\\\hline
+    \entry{solid} & \entry{dotted} \\
+    \entry{loosely dotted} & \entry{dashed} \\
+    \entry{densely dashed} & \entry{loosely dashed} 
+  \end{tabular}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{weitere Opt-Argumente}
+\begin{itemize}[<+->]
+  \item \texttt{rounded corners}: rundet die Ecken ab.
+  \item \texttt{bend left / bend right}: erzeugt eine Kurve statt einer geraden Linie. Muss mit \texttt{to} statt \lstinline[style=Latex]+--+ verwendet werden.
+  \item \texttt{fill}: füllt die Zeichnung. Mit ``\texttt{=}'' kann eine Farbe definiert werden \\
+    Mit \lstinline[style=Latex]+fill=orange+ wird der Bereich orange gefärbt.
+  \item \texttt{draw}: färbt die Linie. Mit ``\texttt{=}'' kann eine Farbe definiert werden \\
+    Mit \lstinline[style=Latex]+draw=blue+ wird die Linie blau gefärbt.
+  \item \texttt{line width}: Legt mittels ``\texttt{=}'' die Strichstärke fest.\\
+    Mit \lstinline[style=Latex]+line width=4mm+ wird die Linie 4mm dick.
+  \item \texttt{dash pattern:} Erzeugt eine Strichart. Beispiel:\\
+    \lstinline[style=Latex]+dash pattern=on 2pt off 3pt on 4pt off 4pt+:\\
+    \tikz{\draw[dash pattern=on 2pt off 3pt on 4pt off 4pt] (0,0) -- (8,0);}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Beispiel}
+\begin{lstlisting}[style=Latex]
+\begin{tikzpicture}
+\draw[dashed,->] (0,0) -- (1,1);
+\draw[fill=green,draw=blue,rounded corners] 
+  (2,0) -- ++(1,0) -- ++(0,1) -- ++(-1,0) 
+  -- cycle;
+\draw[thick,bend left] (4,0) to (5,1);
+\draw[blue] (6,0) -| (7,1) -- (8,1) |- (9,0);
+\end{tikzpicture}
+\end{lstlisting}
+\vfill
+\pause
+\begin{center}
+  \begin{tikzpicture}
+    \draw[dashed,->] (0,0) -- (1,1); \pause
+    \draw[fill=green,draw=blue,rounded corners] (2,0) -- ++(1,0) --
+    ++(0,1) -- ++(-1,0) -- cycle; \pause \draw[thick,bend left] (4,0)
+    to (5,1); \pause \draw[blue] (6,0) -| (7,1) -- (8,1) |- (9,0);
+  \end{tikzpicture}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Figuren}
+\begin{itemize}[<+->]
+  \item Rechteck: \lstinline[style=Latex]+\draw (0,0) rectangle (1,2);+ \tikz[scale=0.5,baseline={([yshift=-.8ex]current bounding box.center)}]{\draw (0,0) rectangle (2,1);}
+  \item Kreis: \lstinline[style=Latex]+\draw (0,0) circle (1);+ \tikz[scale=0.5,baseline={([yshift=-.8ex]current bounding box.center)}]{\draw (0,0) circle (1);}
+  \item Ellipse: \lstinline[style=Latex]+\draw (0,0) ellipse (2 and 1);+ \tikz[scale=0.5,baseline={([yshift=-.8ex]current bounding box.center)}]{\draw (0,0) ellipse (2 and 1);}
+  \item Bogen: \lstinline[style=Latex]+\draw (0,0) arc (0:45:1cm);+ \tikz[baseline={([yshift=-.8ex]current bounding box.center)}]{\draw (0,0) arc (0:45:1cm);}
+  \item Gitter: \lstinline[style=Latex]+\draw[step=0.2] (0,0) grid (2,1);+ \tikz[scale=0.5,baseline={([yshift=-.8ex]current bounding box.center)}]{\draw[step=0.2] (0,0) grid (2,1);} 
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\newcommand\entry[1]{\tikz[baseline={([yshift=-.8ex]current bounding box.center)}]{\node[draw,#1] {Test};}}
+\frametitle{Knoten}
+\begin{itemize}[<+->]
+  \item Knoten dienen Dazu, ganzen Objekten eine Koordinate zu geben.
+  \item Syntax: \lstinline[style=Latex]+\node[<Opt>](<Name>)at(<Koordinate>){<Objekt>};+
+  \item steht der \lstinline[style=Latex]+\node+-Befehl hinter einer Koordinate, so wird diese übernommen.
+  \item Standard-Knotenrahmen (jeweils mit der Option \texttt{draw}):
+  \begin{center}\begin{tabular}{l|c|c|c}
+  Opt-Parameter & \texttt{rectangle} & \texttt{circle} & \texttt{diamond} \\\hline
+  Aussehen & \entry{rectangle} & \entry{circle} & \entry{diamond} 
+  \end{tabular}\end{center}
+  \item das Paket \texttt{shapes} stellt noch weitere zur Verfügung
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Zusatzmöglichkeiten durch Knoten}
+\begin{itemize}[<+->]
+  \item steht der \lstinline[style=Latex]+\node+-Befehl hinter einem Verbindungsstrich zwischen zwei Koordinaten, so wird die Mitte der Strecke als Koordinate übergeben.
+  \item zusätzliche Opt-Parameter:
+  \begin{itemize}
+    \item \texttt{atop/below/right/left}: verschiebt den Knoten relativ zur letzten Position
+    \item \texttt{label}: erzeugt eine Beschriftung. Syntax:\\
+    \lstinline[style=Latex]+\node[label=90:Text hier] {};+
+  \end{itemize}
+  \item Hat man dem Knoten einen Namen gegeben, so kann man mit \lstinline[style=Latex]+(<Name>.<Grad>)+ die Koordinaten am Rand des Objekts nutzen.\\
+    Außerdem sind entsprechend die Gradzahlen \texttt{.north}, \texttt{.south}, \texttt{.east} und \texttt{.west} definiert.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Beispiel}
+\begin{lstlisting}[style=Latex]
+\begin{tikzpicture}
+\draw (0,4) -- node[above] {Hallo Welt} (6,4);
+\node[draw,diamond] (N1) at (0,1) {$N_1$};
+\node[draw,circle,label=45:$\Phi$] (N2) at (4,1) {$N_2$};
+\draw[->] (N1) -- (N2);
+\end{tikzpicture}
+\end{lstlisting}
+\begin{center}\begin{tikzpicture}
+\draw (0,4) -- node[above] {Hallo Welt} (6,4);
+\end{tikzpicture}\end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Beispiel}
+\begin{lstlisting}[style=Latex]
+\begin{tikzpicture}
+\draw (0,4) -- node[above] {Hallo Welt} (6,4);
+\node[draw,diamond] (N1) at (0,1) {$N_1$};
+\node[draw,circle,label=45:$\Phi$] (N2) at (4,1) {$N_2$};
+\draw[->] (N1) -- (N2);
+\end{tikzpicture}
+\end{lstlisting}
+\begin{center}\begin{tikzpicture}
+\draw (0,4) -- node[above] {Hallo Welt} (6,4);
+\node[draw,diamond] (N1) at (1,3) {$N_1$};
+\node[draw,circle,label=45:$\Phi$] (N2) at (5,3) {$N_2$};
+\draw[->] (N1) -- (N2);
+\end{tikzpicture}\end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Weiterführendes}
+\begin{itemize}[<+->]
+  \item Argumente, die der Umgebung übergeben werden, gelten für die gesamte Zeichnung
+  \item per \texttt{<Name>/.style={<Argumente>}} können eigene Stile definiert werden, die danach als Paket übergeben werden.
+  \item per \texttt{<Position> = of <Name>} können Knoten relativ zu einem anderen Knoten gesetzt werden. Die Entfernung wird über die Variable \texttt{node distance} bestimmt. Als \texttt{<Position>} sind gültig \texttt{below}, \texttt{above}, \texttt{left}, \texttt{right}.
+  \item per \texttt{shorten >= <Entfernung>} bzw. \texttt{shorten <= <Entfernung>} werden Linien rechts bzw. links um \texttt{<Entfernung>} gekürzt. Dies ist praktisch, um die Pfeilspitzen besser sichtbar zu machen.
+  \item Farben können mit \texttt{<Farbe1>!<Prozent>!<Farbe2>} zusammengemischt werden. Beispielsweise ergibt \texttt{black!60!white} ein 60\%-iges Grau.
+  \item mit \texttt{opacity=<Faktor>} kann ein Objekt transparent gemacht werden
+  \item mit \texttt{scale=<Faktor>} werden in einem Objekt (oder für die gesamte Zeichnung) die Maßeinheiten gestreckt / gestaucht. Text bleibt unverändert.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Bäume}
+\begin{itemize}[<+->]
+\item Mit Hilfe der \texttt{child}-Operation können Bäume erzeugt werden
+\item dabei versucht jeder Knoten seine ``Kinder'' gleichmäßig unter sich zu verteilen
+\item der Abstand auf jeder Ebene kann mit dem Argument \texttt{sibling distance} gesetzt werden
+\item für jede Ebene kann durch Verändern des \texttt{level x} Stiles das Aussehen verändert werden
+\item das Argument \texttt{missing} lässt Platz für einen nicht vorhandenen Knoten
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Beispiel}
+\begin{columns}
+\column{.6\textwidth}
+  \begin{lstlisting}[style=Latex]
+\begin{tikzpicture}
+[every node/.style={circle,draw}, 
+ level 1/.style={sibling distance=20mm},
+ level 2/.style={sibling distance=10mm}]
+\node {3}
+  child {node {4} 
+    child {node {5}}
+    child {node {8}}
+  }
+  child {node {7}
+    child[missing]
+    child {node {11}}
+  };
+\end{tikzpicture}
+  \end{lstlisting}
+\pause
+\column{.4\textwidth}
+\begin{center}
+\begin{tikzpicture}
+[every node/.style={circle,draw}, 
+ level 1/.style={sibling distance=20mm},
+ level 2/.style={sibling distance=10mm}]
+\node {3}
+  child {node {4} 
+    child {node {5}}
+    child {node {8}}
+  }
+  child {node {7}
+    child[missing]
+    child {node {11}}
+  };
+\end{tikzpicture}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Beispiel}
+\begin{lstlisting}[style=Latex]
+\begin{tikzpicture}[->,dotted,recht/.style={rectangle,
+                        draw=green,fill=blue!20!white}]
+\node[recht] (a) at (0,0) {Hallo};
+\node[recht,right = of a] (b) at (0,0) {Welt};
+\draw[shorten >= 2pt] (a) -- (b);
+\end{tikzpicture}
+\end{lstlisting}
+\pause
+\scalebox{3}{
+\begin{tikzpicture}[->,dotted,recht/.style={rectangle,
+                        draw=green, fill=blue!20!white}]
+\node[recht] (a) at (0,0) {Hallo};
+\node[recht,right = of a] (b) at (0,0) {Welt};
+\draw[shorten >= 2pt] (a) -- (b);
+\end{tikzpicture}}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{foreach}
+\begin{itemize}[<+->]
+  \item Mit \texttt{foreach} lassen sich Werte in einer Liste automatisch abarbeiten
+  \item Syntax: \lstinline[style=Latex]+\foreach \<Variable> in {<Liste>} {<Befehle>};+
+  \item Beispiel: \lstinline[style=Latex]+\foreach \x in {1,2,3} {(\x)};+: \foreach \x in {1,2,3} {(\x)}
+  \item \texttt{foreach} kann Listen automatisch vervollständigen: \lstinline[style=Latex]+{1,...,8}+
+  \item Wertepaare können wie folgt angegeben werden: \lstinline[style=Latex]+\foreach \x/\y in {0/0,1/3,4/4} {(\x,\y)};+
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Beispiel}
+\begin{lstlisting}[style=Latex]
+\begin{tikzpicture}
+\foreach \x in {0,1,2,3}
+  \draw (\x,0) circle (0.2cm);
+\draw (0,0)
+  \foreach \x in {1,...,3} { -- (\x,1) -- (\x,0) };
+\end{tikzpicture}
+\end{lstlisting}
+\pause
+\begin{center}\begin{tikzpicture}
+\foreach \x in {0,1,2,3} 
+  \draw (\x,0) circle (0.2);
+  \draw (0,0)
+  \foreach \x in {1,...,3} { -- (\x,1) -- (\x,0) };
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Balkendiagramme}
+  \begin{lstlisting}[style=Latex]
+\begin{tikzpicture}
+  \draw[->] (0,0) -- (0,5);
+  \draw[->] (0,0) -- (8,0);
+  \foreach \x/\y/\text in {1/3/A,2/4/B,3/2/C,4/1/D}
+    \draw[-*] (\x,0) node[below] {\text} 
+         -- (\x,\y) node[above] {\y\EUR};
+\end{tikzpicture}
+  \end{lstlisting}
+\pause
+  \begin{tikzpicture}
+    \draw[->] (0,0) -- (0,5);
+    \draw[->] (0,0) -- (8,0);
+    \foreach \x/\y/\text in {1/3/A,2/4/B,3/2/C,4/1/D}
+    \draw[-*] (\x,0) node[below] {\text} -- (\x,\y) node[above] {\y\EUR};
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Kommutative Diagramme}
+  \[ \begin{tikzpicture}[baseline= (a).base]
+    \node[scale=2] (a) at (0,0){
+  \begin{tikzcd}
+    F_t(x) 
+      \ar[r,Rightarrow,"\mathcal{B}_t", red] 
+      \ar[d,"\mathcal{B}_X"] 
+     & F(x) \ar[d,"\mathcal{B}_T" blue] \\
+    A_t
+      \ar[green]{r}[red,below]{\mathcal{B}_T}[orange]{\exists}
+      \ar[ru,dash, dashed]  
+     & A 
+  \end{tikzcd}};
+  \end{tikzpicture}\]
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Kommutative Diagramme}
+  \begin{itemize}[<+->]
+  \item Aktivieren mittels \lstinline[style=Latex]+\usetikzlibrary{cd}+
+  \item Verwenden in einer \texttt{tikz-cd}-Umgebung
+  \item Die Einträge des Diagrams sind angeordnet wie eine Matrix:
+    \begin{itemize}
+    \item Spaltenumbruch mit \lstinline[style=Latex]+&+
+    \item Zeilenumbruch mit \lstinline[style=Latex]+\\+
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Beispiel}
+  \begin{lstlisting}[style=Latex]
+    \[\begin{tikzcd}
+      F_t(x) & F(x) \\
+      A_t    & A 
+    \end{tikzcd}\]
+  \end{lstlisting}
+  \pause
+  \[\begin{tikzcd}
+    F_t(x) & F(x) \\
+    A_t    & A 
+  \end{tikzcd}\]
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Pfeile}
+  Syntax: \lstinline[style=Latex]+\ar[<Richtung>,<Parameter>]+
+  \begin{itemize}[<+->]
+  \item Als Richtungen können verwendet werden:
+    \begin{itemize}
+    \item \textbf{u}: hoch (up)
+    \item \textbf{d}: runter (down)
+    \item \textbf{l}: links (left)
+    \item \textbf{r}: rechts (right)
+    \end{itemize}
+    \pause
+    Auch Kombinationen sind möglich, z.B. \textbf{lld}
+  \item Einige mögliche Parameter:
+    \begin{itemize}
+    \item Pfeilspitzen werden deskriptiv gewählt (z.B. Rightarrow, squiggly, hook, two heads, ...)
+    \item Beschriftungen durch Anführungszeichen: \lstinline[style=Latex]+"text"+
+    \item Farben als Farbname
+    \item alle üblichen TikZ-Parameter
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Beispiel}
+  \begin{lstlisting}[style=Latex]
+    \[\begin{tikzcd}
+      F_t(x) \ar[r] \ar[d] & F(x) \ar[d] \\
+      A_t \ar[r] \ar[ru]   & A 
+    \end{tikzcd}\]
+  \end{lstlisting}
+  \pause
+  \[\begin{tikzcd}
+    F_t(x) \ar[r] \ar[d] & F(x) \ar[d] \\
+    A_t \ar[r] \ar[ru]   & A 
+  \end{tikzcd}\]
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Beispiel}
+  \begin{lstlisting}[style=Latex]
+    \[\begin{tikzcd}
+      F_t(x) \ar[r,Rightarrow] \ar[d] & F(x) \ar[d] \\
+      A_t \ar[r] \ar[ru,dash, dashed]  & A 
+    \end{tikzcd}\]
+  \end{lstlisting}
+  \[\begin{tikzcd}
+    F_t(x) \ar[r,Rightarrow] \ar[d] & F(x) \ar[d] \\
+    A_t \ar[r] \ar[ru,dash, dashed]  & A 
+  \end{tikzcd}\]
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Beispiel}
+  \begin{lstlisting}[style=Latex]
+  \[\begin{tikzcd}
+    F_t(x) 
+      \ar[r,Rightarrow,"\mathcal{B}_t"] 
+      \ar[d,"\mathcal{B}_X"] 
+     & F(x) \ar[d,"\mathcal{B}_T"] \\
+    A_t
+      \ar[r,"\mathcal{B}_T" below, "\exists" above] 
+      \ar[ru,dash, dashed]  
+     & A 
+  \end{tikzcd}\]
+  \end{lstlisting}
+  \[\begin{tikzcd}
+    F_t(x) 
+     \ar[r,Rightarrow,"\mathcal{B}_t"] 
+     \ar[d,"\mathcal{B}_X"] 
+     & F(x) \ar[d,"\mathcal{B}_T"] \\
+    A_t
+     \ar[r,"\mathcal{B}_T" below, "\exists" above] 
+     \ar[ru,dash, dashed]  
+     & A 
+  \end{tikzcd}\]
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Beispiel}
+  \begin{lstlisting}[style=Latex]
+  \[\begin{tikzcd}
+    F_t(x) 
+      \ar[r,Rightarrow,"\mathcal{B}_t", red] 
+      \ar[d,"\mathcal{B}_X"] 
+     & F(x) \ar[d,"\mathcal{B}_T" blue] \\
+    A_t
+      \ar[green]{r}[red,below]{\mathcal{B}_T}[orange]{\exists}
+      \ar[ru,dash, dashed]  
+     & A 
+  \end{tikzcd}\]
+  \end{lstlisting}
+  \[\begin{tikzcd}
+    F_t(x) 
+      \ar[r,Rightarrow,"\mathcal{B}_t", red] 
+      \ar[d,"\mathcal{B}_X"] 
+     & F(x) \ar[d,"\mathcal{B}_T" blue] \\
+    A_t
+      \ar[green]{r}[red,below]{\mathcal{B}_T}[orange]{\exists}
+      \ar[ru,dash, dashed]  
+     & A 
+  \end{tikzcd}\]
+\end{frame}
+
+\begin{frame}
+  \frametitle{PGF-Plots}
+  \centering
+  \begin{tikzpicture}
+	\begin{polaraxis}
+	\addplot+[mark=none,domain=0:720,samples=600] 
+		{sin(2*x)*cos(2*x)}; 
+	% equivalent to (x,{sin(..)cos(..)}), i.e.
+	% the expression is the RADIUS
+	\end{polaraxis}
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{PGF-Plots}
+  \begin{itemize}[<+->]
+  \item Benötigt das Paket \texttt{pgfplots}
+  \item Kann zusätzliche Pakete laden mit \lstinline[style=Latex]+\usepgfplotslibrary+
+  \item Einstellen der Version mittels \lstinline[style=Latex]+\pgfplotsset{compat=1.12}+
+    \begin{itemize}
+    \item Eventuell muss hier eine kleinere Version gewählt werden
+    \end{itemize}
+  \item Anleitung: \url{http://pgfplots.sourceforge.net/pgfplots.pdf}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Funktionen}
+  \begin{lstlisting}[style=Latex]
+    \begin{tikzpicture}
+      \begin{axis}
+        \addplot[ red, domain=-3e-3:3e-3, samples=201 ]{ exp(-x^2 /
+          (2e-3^2)) / (1e-3 * sqrt(2*pi)) };
+      \end{axis}
+    \end{tikzpicture}
+  \end{lstlisting}
+  \pause
+  \begin{center}
+    \begin{tikzpicture}[scale=.8]
+      \begin{axis}
+        \addplot[ red, domain=-3e-3:3e-3, samples=201 ]{ exp(-x^2 /
+          (2e-3^2)) / (1e-3 * sqrt(2*pi)) };
+      \end{axis}
+    \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Kurven}
+  \begin{columns}
+    \column{.5\textwidth}
+    \begin{lstlisting}[style=Latex]
+\begin{tikzpicture}
+  \begin{polaraxis}
+  \addplot+[ 
+    mark=none, 
+    domain=0:720, 
+    samples=600 
+    ]
+    {sin(2*x)*cos(2*x) };
+  \end{polaraxis}
+\end{tikzpicture}
+    \end{lstlisting}
+    \pause
+    \column{.49\textwidth}
+    \begin{tikzpicture}[scale=.8]
+      \begin{polaraxis}
+        \addplot+[mark=none,domain=0:720,samples=600]
+        {sin(2*x)*cos(2*x)};
+        % equivalent to (x,{sin(..)cos(..)}), i.e.
+        % the expression is the RADIUS
+      \end{polaraxis}
+    \end{tikzpicture}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Kurven}
+  
+  \begin{columns}
+    \column{.5\textwidth}
+    \begin{lstlisting}[style=Latex]
+\begin{tikzpicture}
+\begin{axis}[ 
+  title={$x \exp(-x^2-y^2)$}, 
+  xlabel=$x$, ylabel=$y$, 
+  small]
+  \addplot3[ 
+    surf, 
+    domain=-2:2, 
+    domain y=-1.3:1.3,]
+    {exp(-x^2-y^2)*x };
+\end{axis}
+\end{tikzpicture}
+    \end{lstlisting}
+    \pause
+    \column{.49\textwidth}
+    \begin{tikzpicture}
+      \begin{axis}[title={$x \exp(-x^2-y^2)$},xlabel=$x$,
+        ylabel=$y$,small,]
+        \addplot3[surf,domain=-2:2,domain y=-1.3:1.3,]
+        {exp(-x^2-y^2)*x};
+      \end{axis}
+  \end{tikzpicture}
+  \end{columns}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Dokumentation}
+\url{www.ctan.org/get/graphics/pgf/base/doc/generic/pgf/pgfmanual.pdf}
+\end{frame}
+\end{comment}

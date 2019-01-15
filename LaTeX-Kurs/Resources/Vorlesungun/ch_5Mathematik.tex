@@ -1,0 +1,365 @@
+\section{Mathematik}
+\subsection{Grundsatzliches}
+
+\begin{frame}[fragile]
+\frametitle{Grundsatzliches}
+\begin{itemize}[<+->]
+  \item für Formeln muss \LaTeX~, in den Mathematikmodus wechseln:
+  \begin{itemize}
+    \item Inlineformeln stehen zwischen Dollarzeichen: \lstinline[style=Latex]!$a+b$! wird zu $a+b$.
+    \item Outlineformeln stehen in eckigen Klammern: \lstinline[style=Latex]!\[a+b\]! wird zu \[a+b\]
+  \end{itemize}
+  \item im Mathematikmodus werden Leerzeichen gänzlich ignoriert
+  \item der Mathematikmodus ermöglicht neue Formatierungen:
+  \begin{itemize}
+    \item Hochstellen erfolgt mittels \lstinline[style=Latex]+^+: \lstinline[style=Latex]+$a^b$+ wird zu $a^b$.
+    \item Tiefstellen erfolgt mittels \lstinline[style=Latex]+_+: \lstinline[style=Latex]+$a_b$+ wird zu $a_b$.
+  \end{itemize}
+  \item eine Formel kann beliebig kompliziert werden:
+  \lstinline[style=Latex]+\[ a^{b^{c_d^{e^f}}}_{g_h} \]+
+  \[ a^{b^{c_d^{e^f}}}_{g_h} \]
+  \item Viele mathematische Zeichen etc. benötigen AMS-Pakete. Beim Arbeiten damit sollte am besten alles geladen werden:
+  \lstinline[style=Latex]+\usepackage{amsmath,amssymb,amsfonts,amsthm,mathtools}+
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Zeichendarstellung}
+\begin{itemize}[<+->]
+  \item der Fonttyp hängt vom Zeichen ab:
+  \begin{itemize}
+    \item Buchstaben werden \textit{kursiv} dargestellt, manche Buchstaben (z.B. $f$) haben einen eigenen Mathe-Font: $abcdefg$
+    \item Zahlen werden in Roman dargestellt: $123456$
+    \item Leerzeichen werden garnicht dargestellt.
+  \end{itemize}
+  \item Abstände müssen generell mit Whitespaces erzeugt werden
+  \item um Text in einer Formel einzufügen, stellt das Paket \texttt{amsmath} den Befehl \lstinline[style=Latex]+\text{<Text>}+ bereit
+\item für die meisten Funktionen ($\sin,\cos,\max,\min $) existieren vorgefertige Befehle (z.B. \lstinline[style=Latex]+\sin+).
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{BSP: math}
+\begin{lstlisting}[style=Latex]
+Hier definieren wir eine Formel $ \hat{b}:=a^{2+b}_{ij} $ mitten im Text. Wir könnenen dies natürlich auch als einzelne Zeile machen:
+\[ f(x):= \max({2^x-\Gamma(2))} \text{ für alle } x \in D\]
+\end{lstlisting}
+
+Hier definieren wir eine Formel $ \hat{b}:=a^{2+b}_{ij} $ mitten im Text. Wir könnenen dies natürlich auch als einzelne Zeile machen:
+\[ f(x):= \max({2^x-\Gamma(2))} \text{ für alle } x \in D\]
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Schriften}
+\begin{itemize}[<+->]
+  \item um spezielle Schriften zu verwenden, müssen verschiedene Schriften verwendet werden.:
+  \begin{itemize}
+     \item \lstinline[style=Latex]+\mathrm+ Roman: $\mathrm{A,B,C,a,b,c}$ 
+     \item \lstinline[style=Latex]+\mathbb+\footnotemark[1]\footnotemark[2] Doppelt: $\mathbb{A,B,C,D,E,F}$ 
+    \item \lstinline[style=Latex]+\mathsf+ Serifenlos: $\mathsf{A,B,C,a,b,c}$ 
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\subsection{Umgebungen}
+
+\begin{frame}[fragile]
+\frametitle{Outline-Umgebungen}
+\begin{description}[<+->]
+ \item[align] Erzeugt eine mehrspaltige Formelumgebung, die abwechselnd rechts- und linksbündig sind. Spalten- bzw. Zeilenumbruch funktionieren wie gewohnt mit \lstinline[style=Latex]+&+ bzw. \lstinline[style=Latex]+\\+.
+ \end{description}
+ Der Befehl nummeriert automatisch die Formeln durch.Dies kann mit: \lstinline[style=Latex]+*+ unterdrückt werden.
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Beispiel}
+\begin{lstlisting}[style=Latex]
+\begin{align}
+ x_i &= a^2 + b^2 & (i<5) \\
+ x_i &= a + b & (i>5)
+\end{align}
+\begin{align*}
+x_i &= a + b 
+\end{align}
+\end{lstlisting}
+\pause
+\vspace{1cm}
+\begin{align}
+ x_i &= a^2 + b^2 & (i<5) \\
+ x_i &= a + b & (i>5)
+\end{align}
+\begin{align*}
+x_i &= a + b 
+\end{align*}
+\end{frame}
+
+\subsection{Sonderzeichen}
+
+\begin{frame}[fragile]
+\frametitle{Pfeile}
+\begin{itemize}
+  \item<+-> Pfeile werden mittels \lstinline[style=Latex]+\<Richtung>arrow+ erstellt:
+  \begin{itemize}
+    \item[$\rightarrow$] \lstinline[style=Latex]+\rightarrow+
+    \item[$\leftarrow$] \lstinline[style=Latex]+\leftarrow+
+    \item[$\uparrow$] \lstinline[style=Latex]+\uparrow+
+    \item[$\downarrow$] \lstinline[style=Latex]+\downarrow+
+  \end{itemize}
+  \item<+-> schreibt man den ersten Buchstaben groß, so wird der Pfeil doppelt: \\
+  \lstinline[style=Latex]+\Rightarrow+ $\Rightarrow$
+  \item<+-> durch Voranstellen von \texttt{long} erhält man längere Pfeile:
+  \lstinline[style=Latex]+\longrightarrow+ $\longrightarrow$
+  \item<+-> weitere Pfeiltypen können der Symbol-List entnommen werden
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{häufige Sonderzeichen}
+\begin{itemize}
+  \item besonders häufige Zeichen sind
+  \begin{columns}
+  \column{.3\textwidth}
+  \begin{itemize}
+    \item[$\cdot$] \lstinline[style=Latex]+\cdot+
+    \item[$\times$] \lstinline[style=Latex]+\times+
+    \item[$\geq$] \lstinline[style=Latex]+\ge+
+    \item[$\leq$] \lstinline[style=Latex]+\le+
+    \item[$\subset$] \lstinline[style=Latex]+\subset+
+    \item[$\subseteq$] \lstinline[style=Latex]+\subseteq+
+    \item[$\supseteq$] \lstinline[style=Latex]+\supseteq+
+  \end{itemize}
+  \column{.3\textwidth}
+  \begin{itemize}
+    \item[$\neq$] \lstinline[style=Latex]+\neq+
+    \item[$\setminus$] \lstinline[style=Latex]+\setminus+
+    \item[$\in$] \lstinline[style=Latex]+\in+
+    \item[$\notin$] \lstinline[style=Latex]+\notin+
+    \item[$\exists$] \lstinline[style=Latex]+\exists+
+    \item[$\forall$] \lstinline[style=Latex]+\forall+
+    \item[$\emptyset$] \lstinline[style=Latex]+\emptyset+
+  \end{itemize}
+  \column{.3\textwidth}
+  \begin{itemize}  
+    \item[$\vee$] \lstinline[style=Latex]+\vee+
+    \item[$\wedge$] \lstinline[style=Latex]+\wedge+
+    \item[$\cap$] \lstinline[style=Latex]+\cap+
+    \item[$\cup$] \lstinline[style=Latex]+\cup+
+    \item[$\cdots$] \lstinline[style=Latex]+\cdots+
+    \item[$\ldots$] \lstinline[style=Latex]+\ldots+
+    \item[$\vdots$] \lstinline[style=Latex]+\vdots+
+  \end{itemize}
+\end{columns} \pause
+\item Negationen können durch \lstinline[style=Latex]+\not+ erzeugt werden: \lstinline[style=Latex]+\not\leq+ $\not\leq$
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{griechische Buchstaben}
+\begin{itemize}[<+->]
+  \item griechische Buchstaben werden mittels \lstinline[style=Latex]+\<buchstabe>+ für Kleinbuchstaben bzw. \lstinline[style=Latex]+\<Buchstabe>+ für Großbuchstaben erzeugt.
+  \item Buchstaben, die identisch mit den römischen sind, existieren nicht (z.B. Alpha).
+  \item Sollte es Varianten der Buchstaben geben, kann man diese mit der prefix var ausgeben (z.b \textbackslash{}varepsilon $\varepsilon$.
+\end{itemize}
+\pause
+\begin{lstlisting}[style=Latex]
+$\alpha,\beta,\gamma,\Gamma,\delta,\Delta$ \\
+$\epsilon,\theta,\phi,\pi,\rho,\sigma$
+\end{lstlisting}
+\pause
+$\alpha,\beta,\gamma,\Gamma,\delta,\Delta$ \\
+$\epsilon,\theta,\phi,\pi,\rho,\sigma$
+\end{frame}
+
+
+\subsection{über-/untereinander}
+
+\begin{frame}[fragile]
+\frametitle{Limits}
+\begin{itemize}
+  \item<1-> einige Symbole geben die Möglichkeit, Grenzen festzulegen
+  \begin{columns}
+  \column{.3\textwidth}
+  \begin{description}
+    \item[$\prod$] \lstinline[style=Latex]+\prod+
+    \item[$\sum$] \lstinline[style=Latex]+\sum+
+    \item[$\int$] \lstinline[style=Latex]+\int+
+  \end{description}
+  \column{.3\textwidth}
+  \begin{description}
+    \item[$\bigcap$] \lstinline[style=Latex]+\bigcap+
+    \item[$\bigcup$] \lstinline[style=Latex]+\bigcup+
+  \end{description}
+  \column{.3\textwidth}
+  \begin{description}    
+    \item[$\bigwedge$] \lstinline[style=Latex]+\bigwedge+
+    \item[$\bigvee$] \lstinline[style=Latex]+\bigvee+
+  \end{description}
+  \column{.1\textwidth}
+  \end{columns}
+  \item<2-> bei diesen Symbolen werden die Grenzen über bzw. unter die Symbole im outlinemode gesetzt: \lstinline[style=Latex]+\[ \sum_{i=1}^n i^2 \]+
+  \[ \sum_{i=1}^n i^2 \]
+  \item<3-> per \lstinline[style=Latex]+\limits+ kann dies auch im inlinemode geschehen:\\
+  \lstinline[style=Latex]+\sum_{i=1}^n+: $\sum_{i=1}^n$\pause,\quad \lstinline[style=Latex]+\sum\limits_{i=1}^n+: $\sum\limits_{i=1}^n$
+  \item<4-> dies alles gilt auch für die Befehle \lstinline[style=Latex]+\lim,\min,\max,\sup+ etc., allerdings nur für untere Grenzen.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{über-/untereinander}
+\begin{itemize}
+  \item<1-> einige Befehle machen dies automatisch:
+  \begin{columns}
+  \column{.45\textwidth}
+  \begin{itemize}
+    \item[$\hat x$] \lstinline[style=Latex]+\hat{x}+
+    \item[$\bar x$] \lstinline[style=Latex]+\bar{x}+
+    \item[$\vec x$] \lstinline[style=Latex]+\vec{x}+
+  \end{itemize}
+  \column{.45\textwidth}
+  \begin{itemize}
+    \item[$\dot x$] \lstinline[style=Latex]+\dot{x}+
+    \item[$\tilde x$] \lstinline[style=Latex]+\tilde{x}+
+  \end{itemize}
+  \end{columns}
+  \item<2-> oder auch für beliebig lange Formeln:
+  \begin{columns}
+  \column{.4\textwidth}
+  \column{.7\textwidth}
+  \begin{itemize}
+    \item[$\overleftarrow{abc}$] \lstinline[style=Latex]+\overleftarrow{abc}+
+    \item[$\overrightarrow{abc}$] \lstinline[style=Latex]+\overrightarrow{abc}+
+  \end{itemize}
+  \end{columns}
+\end{itemize}
+\end{frame}
+
+
+\subsection{Skalierung}
+
+\begin{frame}[fragile]
+\frametitle{automatisch skalierte Funktionen}
+\begin{description}[<+->]
+  \item[frac] erzeugt einen Bruch: \lstinline[style=Latex]+\frac{a}{b}+ $\frac{a}{b}$
+  \item[sqrt] erzeugt eine Wurzel: \lstinline[style=Latex]+\sqrt[3]{-1}+ $\sqrt[3]{-1}$
+  \item[underbrace] geschweifte Klammern unter einer Formel: \\
+    \lstinline[style=Latex]-\underbrace{a^2+b^2}_{c^2}- \hfill erzeugt \hfill $\underbrace{a^2+b^2}_{c^2}$\\
+    ebenso overbrace (jedoch mit \lstinline[style=Latex]+^+ statt \lstinline[style=Latex]+_+)
+\end{description}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Beispiel}
+\begin{lstlisting}[style=Latex]
+\[ \frac{x-1}{x+1} \]
+\[ \sqrt{\sum_{i=1}^n i^2} = \bar x \]
+\[ \overbrace{\underbrace{a+b}_{x}}^{y} \]
+\end{lstlisting}
+\[ \frac{x-1}{x+1} \]
+\[ \sqrt{\sum_{i=1}^n i^2} = \bar x \]
+\[ \overbrace{\underbrace{a+b}_{x}}^{y} \]
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Klammern}
+\begin{itemize}
+  \item<1-> gültige Klammersymbole sind
+  \begin{columns}
+  \column{.1\textwidth}
+  \column{.2\textwidth}
+  \begin{itemize}
+    \item[$()$] \lstinline[style=Latex]+( )+ 
+    \item[${[]}$] \lstinline[style=Latex]+[ ]+
+    \item[$\{\}$] \lstinline[style=Latex]+\{ \}+
+    \item[$||$] \lstinline[style=Latex]+| |+
+    
+  \end{itemize}
+  \column{.35\textwidth}
+  \begin{itemize}
+   \item[$\|\|$] \lstinline[style=Latex]+\| \|+
+    \item[$\{\}$] \lstinline[style=Latex]+\{ \}+
+    \item[$\langle \rangle$] \lstinline[style=Latex]+\langle \rangle+
+  \end{itemize}
+  \end{columns}
+  \item<+-> linke und rechte Klammer können unabhängig voneinander gewählt werden
+  \item<+-> die Größenbefehle \lstinline[style=Latex]+\big, \Big, \bigg, \Bigg+ passen die Größe der Klammern an
+  \item<+-> Klammern können mit \lstinline[style=Latex]+\left+ bzw. \lstinline[style=Latex]+\right+ automatisch an den Inhalt zwischen beiden Befehlen angepasst werden. Dabei gilt das Klammersymbol \texttt{.} als Platzhalter. Die Klammersymbole müssen links und rechts nicht gleich sein!
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Beispiel}
+\begin{lstlisting}[style=Latex]
+\[ 
+ \big(\sum_{i=1}^n i^2 \big) 
+ \neq \left(\sum_{i=1}^n i\right)^2 
+\]
+\end{lstlisting}
+\vspace{1cm}\pause
+\[ \big(\sum_{i=1}^n i^2 \big) \neq \left(\sum_{i=1}^n i\right)^2 \]
+\end{frame}
+
+
+\subsection{Matrizen}
+
+\begin{frame}[fragile]
+\frametitle{matrix}
+\newcommand\entry[1]{#1 & $\begin{#1} a & b \\ c & d \end{#1}$}
+\begin{itemize}[<+->]
+  \item mit einer \texttt{matrix}-Umgebung kann man eine Anordnung in Matrixform erzeugen
+  \item Spaltenumbruch mit \lstinline[style=Latex]+&+, Zeilenumbruch mit \lstinline[style=Latex]+\\+
+  \item es gibt noch weitere auf \texttt{matrix} basierende Umgebungen:\\
+    \[\renewcommand\arraystretch{1.2}
+    \begin{tabular}{lc||lc}
+      \entry{matrix} & \entry{smallmatrix} \\\hline
+      \entry{pmatrix} & \entry{cases}
+    \end{tabular}\]\textbf{}
+\end{itemize}
+\end{frame}
+
+
+\subsection{Theoreme}
+
+\begin{frame}[fragile]
+\frametitle{Definition}
+\begin{itemize}[<+->]
+  \item Theoreme dienen der optischen Unterscheidung von Lemmata, Sätzen etc.
+  \item eine neue Theoremumgebung wird definiert durch
+    \lstinline[style=Latex]+\newtheorem{<UmgName>}{<DruckName>}[<Reset>]+\\
+    und aufgerufen durch
+    \begin{lstlisting}[style=Latex]
+\begin{<UmgName>}[<Zusatz>]
+ <Inhalt>
+\end{<UmgName>}
+    \end{lstlisting}
+    Bei der Definition wird ein neuer Zähler mit Namen \lstinline[style=Latex]+<UmgName>+ erstellt.
+  \item dabei bedeutet
+  \begin{itemize}
+    \item \lstinline[style=Latex]+<UmgName>+: unter diesem Umgebungsnamen ist das Theorem aufrufbar
+    \item \lstinline[style=Latex]+<DruckName>+: Bezeichnung am Anfang der Umgebung
+    \item \lstinline[style=Latex]+<Zusatz>+: optionaler Zusatz in der Bezeichnung
+    \item \lstinline[style=Latex]+<Reset>+: hier kann ein Zähler angegeben werden, bei dessen Veränderung die Umgebungsnummer resettet wird.\\
+      Mögliche Zähler sind z.B. \texttt{part,chapter,section,subsection}.
+  \end{itemize}
+  \item durch die alternative Definition
+  \lstinline[style=Latex]+\newtheorem{<UmgName>}[<Counter>]{<DruckName>}+\\
+  wird ein existierender Counter mitbenutzt.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{lstlisting}[style=Latex]
+\newtheorem{satz}{Satz}[section]
+\begin{document}
+\begin{satz}[Toller Satz]
+Mit toller Aussage
+\end{satz}
+\begin{satz}[Toller Satz Nummer 2]
+Mit tollerer Aussage
+\end{satz}
+\end{document}
+\end{lstlisting}
+
+{\center{\includegraphics[width=0.8\textwidth]{images/satz.png}}}
+
+\end{frame}
